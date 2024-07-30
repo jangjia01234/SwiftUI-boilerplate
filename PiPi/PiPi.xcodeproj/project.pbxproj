@@ -11,6 +11,7 @@
 		444D2ECB2C5767970019A966 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D2ECA2C5767970019A966 /* ContentView.swift */; };
 		444D2ECD2C5767980019A966 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 444D2ECC2C5767980019A966 /* Assets.xcassets */; };
 		444D2ED02C5767980019A966 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 444D2ECF2C5767980019A966 /* Preview Assets.xcassets */; };
+		444D2ED82C576CE60019A966 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D2ED72C576CE60019A966 /* Activity.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +20,7 @@
 		444D2ECA2C5767970019A966 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		444D2ECC2C5767980019A966 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		444D2ECF2C5767980019A966 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		444D2ED72C576CE60019A966 /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +53,7 @@
 		444D2EC72C5767970019A966 /* PiPi */ = {
 			isa = PBXGroup;
 			children = (
+				444D2ED62C576CD10019A966 /* Model */,
 				444D2EC82C5767970019A966 /* PiPiApp.swift */,
 				444D2ECA2C5767970019A966 /* ContentView.swift */,
 				444D2ECC2C5767980019A966 /* Assets.xcassets */,
@@ -65,6 +68,14 @@
 				444D2ECF2C5767980019A966 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		444D2ED62C576CD10019A966 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				444D2ED72C576CE60019A966 /* Activity.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,6 +148,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				444D2ED82C576CE60019A966 /* Activity.swift in Sources */,
 				444D2ECB2C5767970019A966 /* ContentView.swift in Sources */,
 				444D2EC92C5767970019A966 /* PiPiApp.swift in Sources */,
 			);
