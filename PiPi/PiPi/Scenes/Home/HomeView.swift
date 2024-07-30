@@ -12,9 +12,17 @@ struct HomeView: View {
     
     var body: some View {
         ZStack {
+            VStack {
+                CategoryFilterView()
+                Spacer()
+            }
+            .padding(.horizontal)
+            .zIndex(2)
+            
             Map {
                 
             }
+            .zIndex(1)
         }
     }
     
