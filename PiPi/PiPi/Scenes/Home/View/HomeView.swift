@@ -10,6 +10,8 @@ import MapKit
 
 struct HomeView: View {
     
+    @Namespace private var mapScope
+    
     var body: some View {
         ZStack {
             Map {
