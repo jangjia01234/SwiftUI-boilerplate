@@ -17,30 +17,33 @@ struct TicketsView: View {
     
     var body: some View {
         VStack {
-            HStack {
-                Text("내 티켓")
-                    .font(.title)
-                    .bold()
-                
-                Spacer()
-                
-                Image(systemName: "house.fill")
-                    .foregroundColor(.gray)
-            }
-            
-            animate()
-                .padding(.bottom, 40)
-            
+            title()
+            tabBar()
             ticketView()
-            
+
             Spacer()
         }
         .padding()
     }
     
-    // MARK: - 상단 탭바
+    // MARK: - 상단 타이틀 영역
     @ViewBuilder
-    private func animate() -> some View {
+    private func title() -> some View {
+        HStack {
+            Text("내 티켓")
+                .font(.title)
+                .bold()
+            
+            Spacer()
+            
+            Image(systemName: "house.fill")
+                .foregroundColor(.gray)
+        }
+    }
+    
+    // MARK: - 참가자/주최자 탭바
+    @ViewBuilder
+    private func tabBar() -> some View {
         ZStack {
             HStack {
                 ForEach(tabInfo.allCases, id: \.self) { item in
@@ -65,6 +68,7 @@ struct TicketsView: View {
             Divider()
                 .padding(.top, 38)
         }
+        .padding(.bottom, 40)
     }
     
     // MARK: - 티켓 뷰
