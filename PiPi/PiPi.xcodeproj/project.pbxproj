@@ -53,10 +53,11 @@
 		444D2EC72C5767970019A966 /* PiPi */ = {
 			isa = PBXGroup;
 			children = (
-				444D2ED62C576CD10019A966 /* Model */,
 				444D2EC82C5767970019A966 /* PiPiApp.swift */,
 				444D2ECA2C5767970019A966 /* ContentView.swift */,
-				444D2ECC2C5767980019A966 /* Assets.xcassets */,
+				444D2EDA2C58AE9C0019A966 /* Resources */,
+				444D2ED62C576CD10019A966 /* Model */,
+				444D2EDC2C58AEC30019A966 /* Scenes */,
 				444D2ECE2C5767980019A966 /* Preview Content */,
 			);
 			path = PiPi;
@@ -76,6 +77,21 @@
 				444D2ED72C576CE60019A966 /* Activity.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		444D2EDA2C58AE9C0019A966 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				444D2ECC2C5767980019A966 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		444D2EDC2C58AEC30019A966 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Scenes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
