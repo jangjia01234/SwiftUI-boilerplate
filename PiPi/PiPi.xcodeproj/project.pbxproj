@@ -13,6 +13,8 @@
 		444D2ED02C5767980019A966 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 444D2ECF2C5767980019A966 /* Preview Assets.xcassets */; };
 		444D2ED82C576CE60019A966 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D2ED72C576CE60019A966 /* Activity.swift */; };
 		8D8321592C5937CB00C9ABA1 /* TicketsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8321582C5937CB00C9ABA1 /* TicketsView.swift */; };
+		8D83215D2C59655800C9ABA1 /* PeopleListModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D83215C2C59655800C9ABA1 /* PeopleListModal.swift */; };
+		8D83215F2C5967B900C9ABA1 /* TicketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D83215E2C5967B900C9ABA1 /* TicketView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +25,8 @@
 		444D2ECF2C5767980019A966 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		444D2ED72C576CE60019A966 /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 		8D8321582C5937CB00C9ABA1 /* TicketsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketsView.swift; sourceTree = "<group>"; };
+		8D83215C2C59655800C9ABA1 /* PeopleListModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleListModal.swift; sourceTree = "<group>"; };
+		8D83215E2C5967B900C9ABA1 /* TicketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +105,8 @@
 			isa = PBXGroup;
 			children = (
 				8D8321582C5937CB00C9ABA1 /* TicketsView.swift */,
+				8D83215E2C5967B900C9ABA1 /* TicketView.swift */,
+				8D83215C2C59655800C9ABA1 /* PeopleListModal.swift */,
 			);
 			path = Tickets;
 			sourceTree = "<group>";
@@ -175,10 +181,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D83215F2C5967B900C9ABA1 /* TicketView.swift in Sources */,
 				444D2ED82C576CE60019A966 /* Activity.swift in Sources */,
 				444D2ECB2C5767970019A966 /* ContentView.swift in Sources */,
 				8D8321592C5937CB00C9ABA1 /* TicketsView.swift in Sources */,
 				444D2EC92C5767970019A966 /* PiPiApp.swift in Sources */,
+				8D83215D2C59655800C9ABA1 /* PeopleListModal.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

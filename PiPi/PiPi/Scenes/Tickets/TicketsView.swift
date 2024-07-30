@@ -15,11 +15,12 @@ enum tabInfo : String, CaseIterable {
 struct TicketsView: View {
     @Environment(\.dismiss) var dismiss
     @State private var selectedPicker: tabInfo = .participant
+    @State private var isShowingModal: Bool = false
     
     var body: some View {
         NavigationStack {
             tabBar()
-            ticketView()
+            TicketView(selectedPicker: $selectedPicker)
             
             Spacer()
         }
@@ -63,20 +64,6 @@ struct TicketsView: View {
         }
         .padding(.top, 25)
         .padding(.bottom, 40)
-    }
-    
-    // MARK: - 티켓 뷰
-    struct ticketView: View {
-        var body: some View {
-            ZStack {
-                RoundedRectangle(cornerRadius: 20)
-                    .fill(.gray)
-                    .frame(width: 350, height: 350)
-                
-                Text("티켓")
-                    .foregroundColor(.white)
-            }
-        }
     }
 }
 
