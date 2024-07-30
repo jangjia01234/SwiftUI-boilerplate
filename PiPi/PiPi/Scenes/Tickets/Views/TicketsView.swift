@@ -19,7 +19,7 @@ struct TicketsView: View {
     var body: some View {
         NavigationStack {
             TabBar(selectedPicker: $selectedPicker)
-            Ticket(selectedPicker: $selectedPicker)
+            TicketView(selectedPicker: $selectedPicker)
             
             Spacer()
         }
