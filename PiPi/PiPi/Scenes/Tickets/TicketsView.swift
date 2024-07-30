@@ -13,35 +13,20 @@ enum tabInfo : String, CaseIterable {
 }
 
 struct TicketsView: View {
+    @Environment(\.dismiss) var dismiss
     @State private var selectedPicker: tabInfo = .participant
     
     var body: some View {
-        VStack {
-            title()
+        NavigationStack {
             tabBar()
             ticketView()
-
-            Spacer()
-        }
-        .padding()
-    }
-    
-    // MARK: - 상단 타이틀 영역
-    @ViewBuilder
-    private func title() -> some View {
-        HStack {
-            Text("내 티켓")
-                .font(.title)
-                .bold()
             
             Spacer()
-            
-            Image(systemName: "house.fill")
-                .foregroundColor(.gray)
         }
+        .navigationBarBackButtonHidden(true)
     }
     
-    // MARK: - 참가자/주최자 탭바
+    // MARK: - 참가자/주최자 탭뷰 + 툴바
     @ViewBuilder
     private func tabBar() -> some View {
         ZStack {
@@ -66,8 +51,17 @@ struct TicketsView: View {
             }
             
             Divider()
-                .padding(.top, 38)
+                .padding(.top, 35)
         }
+        .navigationTitle("내 티켓")
+        .toolbar {
+            Button { dismiss() } label: {
+                Image(systemName: "house.fill")
+                    .foregroundColor(.gray)
+                    .font(.caption)
+            }
+        }
+        .padding(.top, 25)
         .padding(.bottom, 40)
     }
     
