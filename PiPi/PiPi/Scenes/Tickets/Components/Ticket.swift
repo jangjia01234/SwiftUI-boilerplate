@@ -8,7 +8,7 @@
 import SwiftUI
 
 // TODO: 데이터 연결 예정 (현재 목업 데이터로 구성)
-struct TicketView: View {
+struct Ticket: View {
     @State private var isShowingModal: Bool = false
     @Binding var selectedPicker: tabInfo
     
@@ -104,5 +104,5 @@ struct TicketView: View {
 }
 
 #Preview {
-    TicketView(selectedPicker: .constant(.participant))
+    Ticket(selectedPicker: .constant(.participant))
 }

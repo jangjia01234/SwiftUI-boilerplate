@@ -1,5 +1,5 @@
 //
-//  TicketsView.swift
+//  TabBar.swift
 //  PiPi
 //
 //  Created by Jia Jang on 7/31/24.
@@ -7,29 +7,11 @@
 
 import SwiftUI
 
-enum tabInfo : String, CaseIterable {
-    case participant = "참가자"
-    case organizer = "주최자"
-}
-
-struct TicketsView: View {
+struct TabBar: View {
     @Environment(\.dismiss) var dismiss
-    @State private var selectedPicker: tabInfo = .participant
-    @State private var isShowingModal: Bool = false
+    @Binding var selectedPicker: tabInfo
     
     var body: some View {
-        NavigationStack {
-            tabBar()
-            TicketView(selectedPicker: $selectedPicker)
-            
-            Spacer()
-        }
-        .navigationBarBackButtonHidden(true)
-    }
-    
-    // MARK: - 참가자/주최자 탭뷰 + 툴바
-    @ViewBuilder
-    private func tabBar() -> some View {
         ZStack {
             HStack {
                 ForEach(tabInfo.allCases, id: \.self) { item in
@@ -66,7 +48,6 @@ struct TicketsView: View {
         .padding(.bottom, 40)
     }
 }
-
 #Preview {
-    TicketsView()
+    TabBar(selectedPicker: .constant(.participant))
 }
