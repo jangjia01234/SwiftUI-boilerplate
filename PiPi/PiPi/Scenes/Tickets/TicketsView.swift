@@ -14,7 +14,6 @@ enum tabInfo : String, CaseIterable {
 
 struct TicketsView: View {
     @State private var selectedPicker: tabInfo = .participant
-    @Namespace private var animation
     
     var body: some View {
         VStack {
@@ -55,7 +54,6 @@ struct TicketsView: View {
                             Rectangle()
                                 .foregroundColor(.black)
                                 .frame(width: 84, height: 3)
-                                .matchedGeometryEffect(id: "info", in: animation)
                         }
                     }
                     .onTapGesture {
