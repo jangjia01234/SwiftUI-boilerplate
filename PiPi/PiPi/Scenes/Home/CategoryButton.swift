@@ -22,7 +22,7 @@ struct CategoryButton: View {
             Text(category.rawValue)
                 .foregroundStyle(.black)
         }
-        .frame(width: 66, height: 30)
+        .frame(height: 30)
         .font(.footnote)
     }
     
