@@ -19,9 +19,9 @@ struct TicketView: View {
             
             VStack(alignment: .leading) {
                 header()
-                ticketInfo(selectedPicker: selectedPicker)
+                ticketDetailSection(selectedPicker: selectedPicker)
                 Spacer()
-                authentication()
+                authenticationSection()
             }
             .foregroundColor(.white)
             .padding()
@@ -31,47 +31,49 @@ struct TicketView: View {
             PeopleListModal()
         }
     }
-    
-    fileprivate func header() -> some View {
+}
+
+private extension TicketView {
+    func header() -> some View {
         HStack {
-            SymbolCell(name: "figure.run.circle.fill", font: .title2, color: .white)
-            TextCell(content: "제목", font: .title2, weight: .bold)
+            symbolItem(name: "figure.run.circle.fill", font: .title2, color: .white)
+            textItem(content: "제목", font: .title2, weight: .bold)
             Spacer()
-            TicketInfoCell(align: .trailing, title: "날짜", description: "2024.07.29")
+            ticketInfoItem(align: .trailing, title: "날짜", content: "2024.07.29")
         }
     }
     
-    fileprivate func ticketInfo(selectedPicker: TabInfo) -> some View {
+    func ticketDetailSection(selectedPicker: TabInfo) -> some View {
         VStack(alignment: .leading) {
             HStack {
                 VStack(alignment: .leading) {
-                    TicketInfoCell(align: .leading, title: selectedPicker == .participant ? "주최자" : "참가자")
+                    ticketInfoItem(align: .leading, title: selectedPicker == .participant ? "주최자" : "참가자", content: "")
                     
                     if selectedPicker == .organizer {
                         Button {
                             isShowingModal = true
                         } label: {
-                            TextCell(content: "리스트")
+                            textItem(content: "리스트")
                         }
                         .buttonStyle(.bordered)
                         .tint(.white)
-                    } else { TextCell(content: "닉네임") }
+                    } else { textItem(content: "닉네임") }
                 }
                 
                 Spacer()
                 
                 // TODO: 인증여부에 따른 상태관리 예정
-                SymbolCell(name: "checkmark.circle.fill")
+                symbolItem(name: "checkmark.circle.fill")
             }
             .padding(.vertical, 20)
             
-            TicketInfoCell(title: "장소", description: "체육관")
+            ticketInfoItem(title: "장소", content: "체육관")
         }
     }
     
-    fileprivate func authentication() -> some View {
+    func authenticationSection() -> some View {
         HStack {
-            TicketInfoCell(title: "시간", description: "19:30 - \n21:30")
+            ticketInfoItem(title: "시간", content: "19:30 - \n21:30")
             
             Spacer()
             
@@ -80,9 +82,31 @@ struct TicketView: View {
                     .frame(width: 50, height: 50)
                 
                 // TODO: 인증 기능 구현 예정
-                SymbolCell(name: selectedPicker == .participant ? "qrcode" : "camera.fill", font: selectedPicker == .participant ? .title : .title2, color: .black)
+                symbolItem(name: selectedPicker == .participant ? "qrcode" : "camera.fill", font: selectedPicker == .participant ? .title : .title2, color: .black)
             }
         }
+    }
+    
+    func ticketInfoItem(align: HorizontalAlignment = .leading, title: String, content: String) -> some View {
+        VStack(alignment: align) {
+            Text(title)
+                .font(.caption)
+                .bold()
+                .foregroundColor(.gray)
+            Text(content)
+        }
+    }
+    
+    func textItem(content: String, font: Font = .body, weight: Font.Weight = .regular) -> some View {
+        Text(content)
+            .font(font)
+            .fontWeight(weight)
+    }
+    
+    func symbolItem(name: String, font: Font = .body, color: Color = .gray) -> some View {
+        Image(systemName: name)
+            .font(font)
+            .foregroundColor(color)
     }
 }
 
