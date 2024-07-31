@@ -19,7 +19,7 @@
 		444D2EE82C59B04A0019A966 /* ActivityCreateButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D2EE72C59B04A0019A966 /* ActivityCreateButton.swift */; };
 		444D2EEB2C59BC2B0019A966 /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D2EEA2C59BC2B0019A966 /* View+.swift */; };
 		8D8321592C5937CB00C9ABA1 /* TicketsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8321582C5937CB00C9ABA1 /* TicketsView.swift */; };
-		8D83215D2C59655800C9ABA1 /* PeopleListModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D83215C2C59655800C9ABA1 /* PeopleListModal.swift */; };
+		8D83215D2C59655800C9ABA1 /* PeopleListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D83215C2C59655800C9ABA1 /* PeopleListView.swift */; };
 		8D83215F2C5967B900C9ABA1 /* TicketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D83215E2C5967B900C9ABA1 /* TicketView.swift */; };
 		8D8321612C5968E400C9ABA1 /* TicketSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8321602C5968E400C9ABA1 /* TicketSegmentedControl.swift */; };
 /* End PBXBuildFile section */
@@ -38,7 +38,7 @@
 		444D2EE72C59B04A0019A966 /* ActivityCreateButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityCreateButton.swift; sourceTree = "<group>"; };
 		444D2EEA2C59BC2B0019A966 /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
 		8D8321582C5937CB00C9ABA1 /* TicketsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketsView.swift; sourceTree = "<group>"; };
-		8D83215C2C59655800C9ABA1 /* PeopleListModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleListModal.swift; sourceTree = "<group>"; };
+		8D83215C2C59655800C9ABA1 /* PeopleListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleListView.swift; sourceTree = "<group>"; };
 		8D83215E2C5967B900C9ABA1 /* TicketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketView.swift; sourceTree = "<group>"; };
 		8D8321602C5968E400C9ABA1 /* TicketSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketSegmentedControl.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -158,7 +158,7 @@
 		8D8321632C59691900C9ABA1 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				8D83215C2C59655800C9ABA1 /* PeopleListModal.swift */,
+				8D83215C2C59655800C9ABA1 /* PeopleListView.swift */,
 				8D8321602C5968E400C9ABA1 /* TicketSegmentedControl.swift */,
 			);
 			path = Components;
@@ -245,7 +245,7 @@
 				444D2ECB2C5767970019A966 /* ContentView.swift in Sources */,
 				8D8321592C5937CB00C9ABA1 /* TicketsView.swift in Sources */,
 				444D2EC92C5767970019A966 /* PiPiApp.swift in Sources */,
-				8D83215D2C59655800C9ABA1 /* PeopleListModal.swift in Sources */,
+				8D83215D2C59655800C9ABA1 /* PeopleListView.swift in Sources */,
 				8D8321612C5968E400C9ABA1 /* TicketSegmentedControl.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

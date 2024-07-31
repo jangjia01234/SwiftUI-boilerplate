@@ -10,16 +10,16 @@ import SwiftUI
 // TODO: 데이터 연결 예정 (현재 목업 데이터로 구성)
 struct TicketView: View {
     @State private var isShowingModal: Bool = false
-    @Binding var selectedPicker: TabInfo
+    @Binding var selectedItem: TicketType
     
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 20)
-                .fill(selectedPicker == .participant ? .orange : .purple)
+                .fill(selectedItem == .participant ? .orange : .purple)
             
             VStack(alignment: .leading) {
                 header()
-                ticketDetailSection(selectedPicker: selectedPicker)
+                ticketDetailSection(selectedItem: selectedItem)
                 Spacer()
                 authenticationSection()
             }
@@ -28,7 +28,7 @@ struct TicketView: View {
         }
         .frame(width: 350, height: 350)
         .sheet(isPresented: $isShowingModal) {
-            PeopleListModal()
+            PeopleListView()
         }
     }
 }
@@ -43,13 +43,13 @@ private extension TicketView {
         }
     }
     
-    func ticketDetailSection(selectedPicker: TabInfo) -> some View {
+    func ticketDetailSection(selectedItem: TicketType) -> some View {
         VStack(alignment: .leading) {
             HStack {
                 VStack(alignment: .leading) {
-                    ticketInfoItem(align: .leading, title: selectedPicker == .participant ? "주최자" : "참가자", content: "")
+                    ticketInfoItem(align: .leading, title: selectedItem == .participant ? "주최자" : "참가자", content: "")
                     
-                    if selectedPicker == .organizer {
+                    if selectedItem == .organizer {
                         Button {
                             isShowingModal = true
                         } label: {
@@ -82,7 +82,7 @@ private extension TicketView {
                     .frame(width: 50, height: 50)
                 
                 // TODO: 인증 기능 구현 예정
-                symbolItem(name: selectedPicker == .participant ? "qrcode" : "camera.fill", font: selectedPicker == .participant ? .title : .title2, color: .black)
+                symbolItem(name: selectedItem == .participant ? "qrcode" : "camera.fill", font: selectedItem == .participant ? .title : .title2, color: .black)
             }
         }
     }
@@ -111,5 +111,5 @@ private extension TicketView {
 }
 
 #Preview {
-    TicketView(selectedPicker: .constant(.participant))
+    TicketView(selectedItem: .constant(.participant))
 }

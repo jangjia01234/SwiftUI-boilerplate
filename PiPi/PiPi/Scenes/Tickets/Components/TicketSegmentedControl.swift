@@ -9,26 +9,26 @@ import SwiftUI
 
 struct TicketSegmentedControl: View {
     @Environment(\.dismiss) var dismiss
-    @Binding var selectedPicker: TabInfo
+    @Binding var selectedItem: TicketType
     
     var body: some View {
         ZStack {
             HStack {
-                ForEach(TabInfo.allCases, id: \.self) { item in
+                ForEach(TicketType.allCases, id: \.self) { item in
                     VStack {
                         Text(item.rawValue)
                             .frame(maxWidth: .infinity/4, minHeight: 25)
-                            .foregroundColor(selectedPicker == item ? .black : .gray)
-                            .fontWeight(selectedPicker == item ? .semibold : .regular)
+                            .foregroundColor(selectedItem == item ? .black : .gray)
+                            .fontWeight(selectedItem == item ? .semibold : .regular)
                         
-                        if selectedPicker == item {
+                        if selectedItem == item {
                             Rectangle()
                                 .foregroundColor(.black)
                                 .frame(width: 84, height: 3)
                         }
                     }
                     .onTapGesture {
-                        self.selectedPicker = item
+                        self.selectedItem = item
                     }
                 }
             }
@@ -49,5 +49,5 @@ struct TicketSegmentedControl: View {
     }
 }
 #Preview {
-    TicketSegmentedControl(selectedPicker: .constant(.participant))
+    TicketSegmentedControl(selectedItem: .constant(.participant))
 }

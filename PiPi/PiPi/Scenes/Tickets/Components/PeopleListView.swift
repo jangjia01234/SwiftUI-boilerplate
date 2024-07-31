@@ -1,5 +1,5 @@
 //
-//  PeopleListModal.swift
+//  PeopleListView.swift
 //  PiPi
 //
 //  Created by Jia Jang on 7/31/24.
@@ -7,11 +7,11 @@
 
 import SwiftUI
 
-struct PeopleListModal: View {
+struct PeopleListView: View {
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack {
                 // TODO: 데이터 연결 예정 (현재 목업 데이터로 구성)
                 Form {
@@ -31,5 +31,5 @@ struct PeopleListModal: View {
 }
 
 #Preview {
-    PeopleListModal()
+    PeopleListView()
 }
