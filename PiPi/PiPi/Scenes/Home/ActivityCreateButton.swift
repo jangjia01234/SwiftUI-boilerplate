@@ -20,6 +20,7 @@ struct ActivityCreateButton: View {
         }
         .frame(width: 60, height: 60)
         .background(.white)
+        .tint(.accent)
         .clipShape(Circle())
         .setShadow()
     }

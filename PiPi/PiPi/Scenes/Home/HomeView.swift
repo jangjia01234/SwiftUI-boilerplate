@@ -58,6 +58,7 @@ fileprivate extension View {
     func setSmallButtonAppearance() -> some View {
         self
             .frame(width: 38, height: 38)
+            .tint(.accent)
             .background(.white)
             .clipShape(Circle())
             .setShadow()
