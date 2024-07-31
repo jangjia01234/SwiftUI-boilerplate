@@ -7,18 +7,18 @@
 
 import SwiftUI
 
-enum tabInfo : String, CaseIterable {
+enum TabInfo : String, CaseIterable {
     case participant = "참가자"
     case organizer = "주최자"
 }
 
 struct TicketsView: View {
-    @State private var selectedPicker: tabInfo = .participant
+    @State private var selectedPicker: TabInfo = .participant
     @State private var isShowingModal: Bool = false
     
     var body: some View {
         NavigationStack {
-            TabBar(selectedPicker: $selectedPicker)
+            TicketSegmentedControl(selectedPicker: $selectedPicker)
             TicketView(selectedPicker: $selectedPicker)
             
             Spacer()

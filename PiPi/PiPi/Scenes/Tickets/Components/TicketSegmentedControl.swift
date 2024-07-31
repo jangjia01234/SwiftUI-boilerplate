@@ -1,5 +1,5 @@
 //
-//  TabBar.swift
+//  TicketSegmentedControl.swift
 //  PiPi
 //
 //  Created by Jia Jang on 7/31/24.
@@ -7,14 +7,14 @@
 
 import SwiftUI
 
-struct TabBar: View {
+struct TicketSegmentedControl: View {
     @Environment(\.dismiss) var dismiss
-    @Binding var selectedPicker: tabInfo
+    @Binding var selectedPicker: TabInfo
     
     var body: some View {
         ZStack {
             HStack {
-                ForEach(tabInfo.allCases, id: \.self) { item in
+                ForEach(TabInfo.allCases, id: \.self) { item in
                     VStack {
                         Text(item.rawValue)
                             .frame(maxWidth: .infinity/4, minHeight: 25)
@@ -49,5 +49,5 @@ struct TabBar: View {
     }
 }
 #Preview {
-    TabBar(selectedPicker: .constant(.participant))
+    TicketSegmentedControl(selectedPicker: .constant(.participant))
 }

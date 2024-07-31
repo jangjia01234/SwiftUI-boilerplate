@@ -10,7 +10,7 @@ import SwiftUI
 // TODO: 데이터 연결 예정 (현재 목업 데이터로 구성)
 struct TicketView: View {
     @State private var isShowingModal: Bool = false
-    @Binding var selectedPicker: tabInfo
+    @Binding var selectedPicker: TabInfo
     
     var body: some View {
         ZStack {
@@ -41,7 +41,7 @@ struct TicketView: View {
         }
     }
     
-    fileprivate func ticketInfo(selectedPicker: tabInfo) -> some View {
+    fileprivate func ticketInfo(selectedPicker: TabInfo) -> some View {
         VStack(alignment: .leading) {
             HStack {
                 VStack(alignment: .leading) {
