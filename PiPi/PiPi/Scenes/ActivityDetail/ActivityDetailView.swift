@@ -17,15 +17,15 @@ struct ActivityDetailView: View {
                     VStack{
                         HStack{
                             Text("제목")
-                                .font(.system(size: 28))
+                                .font(.title)
                             Spacer()
                             Text("모집여부")
-                                .font(.system(size: 16))
+                                .font(.callout)
                                 .foregroundColor(.purple)
                                 .padding()
                         }
                         Text("소제목")
-                            .font(.system(size: 16))
+                            .font(.callout)
                             .foregroundColor(.gray)
                             .frame(maxWidth: .infinity, alignment: .leading)
                     }
@@ -35,13 +35,12 @@ struct ActivityDetailView: View {
                 VStack {
                     HStack {
                         Text("제목")
-                            .font(.system(size: 28))
+                            .font(.title)
                         Spacer()
                         Text("모집여부")
-                            .font(.system(size: 16))
+                            .font(.callout)
                             .padding()
                             .foregroundColor(.purple)
-                            .bold()
                     }
       
                     Text("소제목")
@@ -113,7 +112,7 @@ struct ActivityDetailView: View {
         }) {
             Text("참가신청")
                 .foregroundColor(.white)
-                .font(.system(size: 16))
+                .font(.callout)
                 .bold()
                 .frame(maxWidth: .infinity, minHeight: 50)
                 .background(.purple)
