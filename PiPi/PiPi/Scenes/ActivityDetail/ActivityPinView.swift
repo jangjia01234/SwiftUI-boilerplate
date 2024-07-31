@@ -15,16 +15,17 @@ struct ActivityPinView: View {
         
         
         Button("활동핀"){
-        ActivityPin = true
+            ActivityPin = true
         }
         .sheet(isPresented: $ActivityPin) {
             ActivityDetailView()
+                .background(Color(.secondarySystemBackground))
                 .presentationDetents([.height(150), .height(650)])
                 .presentationCornerRadius(21)
                 .presentationDragIndicator(.visible)
         }
-        }
     }
+}
 
 
 #Preview {
