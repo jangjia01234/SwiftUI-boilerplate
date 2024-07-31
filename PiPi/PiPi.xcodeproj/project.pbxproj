@@ -16,7 +16,7 @@
 		444D2EE22C58BF790019A966 /* CategoryFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D2EE12C58BF790019A966 /* CategoryFilterView.swift */; };
 		444D2EE42C58C1320019A966 /* CategoryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D2EE32C58C1320019A966 /* CategoryButton.swift */; };
 		444D2EE62C58C9080019A966 /* TicketProfileButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D2EE52C58C9080019A966 /* TicketProfileButtonView.swift */; };
-		444D2EE82C59B04A0019A966 /* CreateActivityButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D2EE72C59B04A0019A966 /* CreateActivityButton.swift */; };
+		444D2EE82C59B04A0019A966 /* ActivityCreateButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D2EE72C59B04A0019A966 /* ActivityCreateButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,7 +30,7 @@
 		444D2EE12C58BF790019A966 /* CategoryFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryFilterView.swift; sourceTree = "<group>"; };
 		444D2EE32C58C1320019A966 /* CategoryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryButton.swift; sourceTree = "<group>"; };
 		444D2EE52C58C9080019A966 /* TicketProfileButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketProfileButtonView.swift; sourceTree = "<group>"; };
-		444D2EE72C59B04A0019A966 /* CreateActivityButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateActivityButton.swift; sourceTree = "<group>"; };
+		444D2EE72C59B04A0019A966 /* ActivityCreateButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityCreateButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,7 +112,7 @@
 				444D2EE12C58BF790019A966 /* CategoryFilterView.swift */,
 				444D2EE32C58C1320019A966 /* CategoryButton.swift */,
 				444D2EE52C58C9080019A966 /* TicketProfileButtonView.swift */,
-				444D2EE72C59B04A0019A966 /* CreateActivityButton.swift */,
+				444D2EE72C59B04A0019A966 /* ActivityCreateButton.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -189,7 +189,7 @@
 			files = (
 				444D2ED82C576CE60019A966 /* Activity.swift in Sources */,
 				444D2EDF2C58B5A20019A966 /* HomeView.swift in Sources */,
-				444D2EE82C59B04A0019A966 /* CreateActivityButton.swift in Sources */,
+				444D2EE82C59B04A0019A966 /* ActivityCreateButton.swift in Sources */,
 				444D2EE22C58BF790019A966 /* CategoryFilterView.swift in Sources */,
 				444D2EE62C58C9080019A966 /* TicketProfileButtonView.swift in Sources */,
 				444D2EE42C58C1320019A966 /* CategoryButton.swift in Sources */,
@@ -328,6 +328,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"PiPi/Preview Content\"";
+				DEVELOPMENT_TEAM = VV2G7CU8KX;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -356,6 +357,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"PiPi/Preview Content\"";
+				DEVELOPMENT_TEAM = VV2G7CU8KX;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CreateActivityButton: View {
+struct ActivityCreateButton: View {
     
     var body: some View {
         Button(action: {
@@ -16,7 +16,7 @@ struct CreateActivityButton: View {
             Image(systemName: "plus")
                 .resizable()
                 .frame(width: 20, height: 20)
-                .bold()
+                .fontWeight(.semibold)
         }
         .frame(width: 60, height: 60)
         .background(.white)
@@ -26,5 +26,5 @@ struct CreateActivityButton: View {
 }
 
 #Preview {
-    CreateActivityButton()
+    ActivityCreateButton()
 }
