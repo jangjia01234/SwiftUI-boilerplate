@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		242DF4532C58C5CE006D8627 /* OnboardingPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242DF4522C58C5CE006D8627 /* OnboardingPageView.swift */; };
+		242DF4552C58C6C3006D8627 /* OnboardingTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242DF4542C58C6C3006D8627 /* OnboardingTabView.swift */; };
+		242DF4572C5902F2006D8627 /* OnboardingProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242DF4562C5902F2006D8627 /* OnboardingProfileView.swift */; };
+		242DF4592C5A08B4006D8627 /* OnboardingLastPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242DF4582C5A08B4006D8627 /* OnboardingLastPageView.swift */; };
 		444D2EC92C5767970019A966 /* PiPiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D2EC82C5767970019A966 /* PiPiApp.swift */; };
 		444D2ECB2C5767970019A966 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D2ECA2C5767970019A966 /* ContentView.swift */; };
 		444D2ECD2C5767980019A966 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 444D2ECC2C5767980019A966 /* Assets.xcassets */; };
@@ -23,6 +27,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		242DF4522C58C5CE006D8627 /* OnboardingPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPageView.swift; sourceTree = "<group>"; };
+		242DF4542C58C6C3006D8627 /* OnboardingTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTabView.swift; sourceTree = "<group>"; };
+		242DF4562C5902F2006D8627 /* OnboardingProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingProfileView.swift; sourceTree = "<group>"; };
+		242DF4582C5A08B4006D8627 /* OnboardingLastPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingLastPageView.swift; sourceTree = "<group>"; };
 		444D2EC52C5767970019A966 /* PiPi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PiPi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		444D2EC82C5767970019A966 /* PiPiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiPiApp.swift; sourceTree = "<group>"; };
 		444D2ECA2C5767970019A966 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -50,6 +58,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		242DF44E2C58BA34006D8627 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				242DF4542C58C6C3006D8627 /* OnboardingTabView.swift */,
+				242DF4522C58C5CE006D8627 /* OnboardingPageView.swift */,
+				242DF4582C5A08B4006D8627 /* OnboardingLastPageView.swift */,
+				242DF4562C5902F2006D8627 /* OnboardingProfileView.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
 		444D2EBC2C5767970019A966 = {
 			isa = PBXGroup;
 			children = (
@@ -108,6 +127,7 @@
 			isa = PBXGroup;
 			children = (
 				D3FFBBE42C58B95C0042EAAD /* ActivityDetail */,
+				242DF44E2C58BA34006D8627 /* Onboarding */,
 				444D2EDD2C58B53C0019A966 /* Home */,
 			);
 			path = Scenes;
@@ -212,6 +232,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				242DF4572C5902F2006D8627 /* OnboardingProfileView.swift in Sources */,
+				242DF4552C58C6C3006D8627 /* OnboardingTabView.swift in Sources */,
+				242DF4592C5A08B4006D8627 /* OnboardingLastPageView.swift in Sources */,
+				242DF4532C58C5CE006D8627 /* OnboardingPageView.swift in Sources */,
 				444D2ED82C576CE60019A966 /* Activity.swift in Sources */,
 				444D2EDF2C58B5A20019A966 /* HomeView.swift in Sources */,
 				444D2EE82C59B04A0019A966 /* ActivityCreateButton.swift in Sources */,
