@@ -11,82 +11,88 @@ struct ActivityDetailView: View {
     @State private var join = false
     
     var body: some View {
-        
-        //TODO: 핀에 입력된 내용들 서버에서 불러오기
-        GeometryReader { geometry in
-            if geometry.size.height <= 150 {
-                VStack {
-                    HStack{
-                        VStack{
-                            Text("제목")
-                                .font(.system(size: 28))
-                                .padding(3)
-                            Text("소제목")
-                                .font(.system(size: 16))
-                                .foregroundColor(.gray)
+        NavigationView {
+            GeometryReader { geometry in
+                ZStack {
+                    VStack {
+                        if geometry.size.height <= 150 {
+                            VStack {
+                                HStack {
+                                    VStack {
+                                        Text("제목")
+                                            .font(.system(size: 28))
+                                            .padding(3)
+                                        Text("소제목")
+                                            .font(.system(size: 16))
+                                            .foregroundColor(.gray)
+                                    }
+                                    .padding()
+                                    Spacer()
+                                    VStack {
+                                        Text("모집여부")
+                                            .font(.system(size: 28))
+                                            .padding()
+                                        Spacer()
+                                    }
+                                }
+                            }
                         }
-                        .padding()
-                        Spacer()
-                        VStack{
-                            Text("모집여부")
-                                .font(.system(size: 28))
-                                .padding()
-                            Spacer()
+                        else {
+                            List {
+                                Section {
+                                    HStack {
+                                        Text("날짜")
+                                            .frame(width: 100, alignment: .leading)
+                                        Text("Date")
+                                    }
+                                    HStack {
+                                        Text("시작시간")
+                                            .frame(width: 100, alignment: .leading)
+                                        Text("00:00")
+                                    }
+                                    HStack {
+                                        Text("종료시간")
+                                            .frame(width: 100, alignment: .leading)
+                                        Text("00:00")
+                                    }
+                                    HStack {
+                                        Text("최대인원")
+                                            .frame(width: 100, alignment: .leading)
+                                        Text("5")
+                                    }
+                                    HStack {
+                                        Text("카테고리")
+                                            .frame(width: 100, alignment: .leading)
+                                        Text("이넘 중 1개")
+                                    }
+                                    HStack {
+                                        Text("위치")
+                                            .frame(width: 100, alignment: .leading)
+                                        Text("지도에서 보여주기")
+                                    }
+                                }
+                                
+                                
+                                // 주최자 정보
+                                // TODO: 주최자 정보 서버에서 불러오기
+                                Section {
+                                    HStack {
+                                        Text("주최자")
+                                            .frame(width: 100, alignment: .leading)
+                                        Text("배드민턴왕위니")
+                                    }
+                                    HStack {
+                                        Text("참여도")
+                                            .frame(width: 100, alignment: .leading)
+                                        Text("Lv.10")
+                                    }
+                                }
+                            }
                         }
                     }
                 }
-                
-            } else {
-                List {
-                    Section {
-                        HStack {
-                            Text("날짜")
-                                .frame(width: 100, alignment: .leading)
-                            Text("Date")
-                            
-                        }
-                        HStack {
-                            Text("시작시간")
-                                .frame(width: 100, alignment: .leading)
-                            Text("00:00")
-                        }
-                        HStack {
-                            Text("종료시간")
-                                .frame(width: 100, alignment: .leading)
-                            Text("00:00")
-                        }
-                        HStack {
-                            Text("최대인원")
-                                .frame(width: 100, alignment: .leading)
-                            Text("5")
-                        }
-                        HStack {
-                            Text("카테고리")
-                                .frame(width: 100, alignment: .leading)
-                            Text("이넘 중 1개")
-                        }
-                        HStack {
-                            Text("위치")
-                                .frame(width: 100, alignment: .leading)
-                            Text("지도에서 보여주기")
-                        }
-                    }
-                    
-                    //주최자 정보
-                    //TODO: 주최자 정보 서버에서 불러오기
-                    Section {
-                        HStack {
-                            Text("주최자")
-                                .frame(width: 100, alignment: .leading)
-                            Text("배드민턴왕위니")
-                        }
-                        HStack {
-                            Text("참여도")
-                                .frame(width: 100, alignment: .leading)
-                            Text("Lv.10")
-                        }
-                    }
-                }
+                .navigationBarTitle("제목")
+                .navigationBarItems(trailing: Text("모집중").foregroundColor(.purple))
             }
         }
         HStack{
@@ -128,6 +134,7 @@ struct ActivityDetailView: View {
         }
     }
 }
+
 
 
 #Preview {
