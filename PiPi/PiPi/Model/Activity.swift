@@ -24,12 +24,27 @@ struct Activity: Identifiable {
 
 extension Activity {
     
-    enum Category {
-        case meal
-        case cafe
-        case alcohol
-        case sport
-        case study
+    enum Category: String, CaseIterable {
+        case meal = "밥"
+        case cafe = "카페"
+        case alcohol = "술"
+        case sport = "운동"
+        case study = "공부"
+        
+        var imageName: String {
+            switch self {
+            case .meal:
+                "fork.knife"
+            case .cafe:
+                "cup.and.saucer.fill"
+            case .alcohol:
+                "wineglass.fill"
+            case .sport:
+                "sportscourt.fill"
+            case .study:
+                "pencil"
+            }
+        }
     }
     
 }
