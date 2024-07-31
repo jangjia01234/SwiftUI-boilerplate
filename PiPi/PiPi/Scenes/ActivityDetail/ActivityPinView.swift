@@ -14,7 +14,6 @@ struct ActivityPinView: View {
     var body: some View {
         Text("맵")
         
-        
         Button("활동핀"){
             ActivityPin = true
         }
