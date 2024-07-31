@@ -102,6 +102,7 @@ struct ActivityDetailView: View {
                     .listRowBackground(Color(.secondarySystemBackground))
                 }
                 .scrollContentBackground(.hidden)
+                .scrollBounceBehavior(.basedOnSize)
             }
         }
     }

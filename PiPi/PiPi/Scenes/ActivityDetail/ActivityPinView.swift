@@ -19,7 +19,7 @@ struct ActivityPinView: View {
         }
         .sheet(isPresented: $ActivityPin) {
             ActivityDetailView()
-                .background(Color(.secondarySystemBackground))
+                .background(Color(.white))
                 .presentationDetents([.height(150), .height(650)])
                 .presentationCornerRadius(21)
                 .presentationDragIndicator(.visible)
