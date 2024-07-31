@@ -15,8 +15,9 @@ struct OnboardingPageView: View {
     var body: some View {
         VStack {
             // 이미지로 변경
-            Image(systemName: imageName)
-                .font(.system(size: 100))
+            Image(imageName)
+                .resizable()
+                .frame(width: 288, height: 290)
                 .padding(.bottom, 36)
             Text(title)
                 .multilineTextAlignment(.center)
@@ -28,5 +29,6 @@ struct OnboardingPageView: View {
                 .font(.footnote)
                 .foregroundColor(.gray)
         }
+        .padding(.bottom, 20)
     }
 }
