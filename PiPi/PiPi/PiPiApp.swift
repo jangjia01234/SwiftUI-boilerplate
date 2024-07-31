@@ -11,7 +11,8 @@ import SwiftUI
 struct PiPiApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+//            ContentView()
+            OnboardingTabView()
         }
     }
 }
