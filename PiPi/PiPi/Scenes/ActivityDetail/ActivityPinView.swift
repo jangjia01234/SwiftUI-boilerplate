@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import MessageUI
 
 struct ActivityPinView: View {
     @State private var ActivityPin = false
