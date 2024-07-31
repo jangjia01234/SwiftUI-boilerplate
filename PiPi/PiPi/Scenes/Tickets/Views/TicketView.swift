@@ -17,21 +17,22 @@ struct TicketView: View {
             RoundedRectangle(cornerRadius: 20)
                 .fill(selectedPicker == .participant ? .orange : .purple)
             
-            HStack {
-                VStack(alignment: .leading) {
-                    header
-                    ticketInfo
-                    Spacer()
-                    authentication
-                }
+            VStack(alignment: .leading) {
+                header()
+                ticketInfo(selectedPicker: selectedPicker)
+                Spacer()
+                authentication()
             }
             .foregroundColor(.white)
             .padding()
         }
         .frame(width: 350, height: 350)
+        .sheet(isPresented: $isShowingModal) {
+            PeopleListModal()
+        }
     }
     
-    private var header: some View {
+    fileprivate func header() -> some View {
         HStack {
             SymbolCell(name: "figure.run.circle.fill", font: .title2, color: .white)
             TextCell(content: "제목", font: .title2, weight: .bold)
@@ -40,23 +41,20 @@ struct TicketView: View {
         }
     }
     
-    private var ticketInfo: some View {
+    fileprivate func ticketInfo(selectedPicker: tabInfo) -> some View {
         VStack(alignment: .leading) {
             HStack {
                 VStack(alignment: .leading) {
                     TicketInfoCell(align: .leading, title: selectedPicker == .participant ? "주최자" : "참가자")
-
+                    
                     if selectedPicker == .organizer {
                         Button {
-                            self.isShowingModal = true
+                            isShowingModal = true
                         } label: {
                             TextCell(content: "리스트")
                         }
                         .buttonStyle(.bordered)
                         .tint(.white)
-                        .sheet(isPresented: self.$isShowingModal) {
-                            PeopleListModal()
-                        }
                     } else { TextCell(content: "닉네임") }
                 }
                 
@@ -71,7 +69,7 @@ struct TicketView: View {
         }
     }
     
-    private var authentication: some View {
+    fileprivate func authentication() -> some View {
         HStack {
             TicketInfoCell(title: "시간", description: "19:30 - \n21:30")
             
