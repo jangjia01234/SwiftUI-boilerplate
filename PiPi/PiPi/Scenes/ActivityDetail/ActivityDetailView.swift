@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ActivityDetailView: View {
     @State private var join = false
+    @State private var showMessageView = false
     
     var body: some View {
         GeometryReader { geometry in
@@ -35,6 +36,7 @@ struct ActivityDetailView: View {
                     VStack {
                         HStack {
                             Text("제목")
+
                                 .font(.title)
                             Spacer()
                             Text("모집여부")
@@ -134,6 +136,7 @@ struct ActivityDetailView: View {
             
             Button(action: {
                 // TODO: 문의하기 버튼 누르면 아이메시지로 넘어가라
+                self.showMessageView = true
             }) {
                 Image(systemName: "ellipsis.message")
                     .foregroundColor(.white)
@@ -142,6 +145,9 @@ struct ActivityDetailView: View {
                     .cornerRadius(10)
             }
             .padding(.trailing)
+            .sheet(isPresented: $showMessageView) {
+                        iMessageConnect()
+                    }
         }
     }
 }
