@@ -41,6 +41,7 @@ fileprivate extension Button {
             .background(Color(uiColor: .systemGray2))
             .tint(.white)
             .clipShape(Circle())
+            .setShadow()
     }
     
 }

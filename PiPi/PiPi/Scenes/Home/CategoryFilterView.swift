@@ -18,8 +18,10 @@ struct CategoryFilterView: View {
                         .clipShape(
                             RoundedRectangle(cornerRadius: 100)
                         )
+                        .setShadow()
                 }
             }
+            .padding(.vertical)
         }
         .scrollBounceBehavior(.basedOnSize, axes: .horizontal)
     }
