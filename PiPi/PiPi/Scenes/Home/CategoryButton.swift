@@ -17,12 +17,13 @@ struct CategoryButton: View {
                 .resizable()
                 .frame(width: 11, height: 11)
                 .foregroundStyle(.accent)
+                .bold()
             
             Text(category.rawValue)
-                .font(.caption2)
                 .foregroundStyle(.black)
         }
-        .frame(width: 66, height: 28)
+        .frame(width: 66, height: 30)
+        .font(.footnote)
     }
     
 }
