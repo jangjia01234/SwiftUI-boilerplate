@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		242DF4532C58C5CE006D8627 /* OnboardingPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242DF4522C58C5CE006D8627 /* OnboardingPageView.swift */; };
+		242DF4552C58C6C3006D8627 /* OnboardingTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242DF4542C58C6C3006D8627 /* OnboardingTabView.swift */; };
+		242DF4572C5902F2006D8627 /* OnboardingProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242DF4562C5902F2006D8627 /* OnboardingProfileView.swift */; };
+		242DF4592C5A08B4006D8627 /* OnboardingLastPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242DF4582C5A08B4006D8627 /* OnboardingLastPageView.swift */; };
 		444D2EC92C5767970019A966 /* PiPiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D2EC82C5767970019A966 /* PiPiApp.swift */; };
 		444D2ECB2C5767970019A966 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D2ECA2C5767970019A966 /* ContentView.swift */; };
 		444D2ECD2C5767980019A966 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 444D2ECC2C5767980019A966 /* Assets.xcassets */; };
@@ -20,9 +24,23 @@
 		444D2EEB2C59BC2B0019A966 /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D2EEA2C59BC2B0019A966 /* View+.swift */; };
 		444D2EEE2C59DB510019A966 /* ActivityCreateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D2EED2C59DB510019A966 /* ActivityCreateView.swift */; };
 		444D2EF02C59E38B0019A966 /* TopBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D2EEF2C59E38B0019A966 /* TopBarView.swift */; };
+		8D451A092C5A8E89005EA90A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8D451A082C5A8E89005EA90A /* GoogleService-Info.plist */; };
+		8D451A0C2C5A8F38005EA90A /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 8D451A0B2C5A8F38005EA90A /* FirebaseAnalytics */; };
+		8D451A0E2C5A8F38005EA90A /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 8D451A0D2C5A8F38005EA90A /* FirebaseDatabase */; };
+		8D8321592C5937CB00C9ABA1 /* TicketsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8321582C5937CB00C9ABA1 /* TicketsView.swift */; };
+		8D83215D2C59655800C9ABA1 /* PeopleListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D83215C2C59655800C9ABA1 /* PeopleListView.swift */; };
+		8D83215F2C5967B900C9ABA1 /* TicketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D83215E2C5967B900C9ABA1 /* TicketView.swift */; };
+		8D8321612C5968E400C9ABA1 /* TicketSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8321602C5968E400C9ABA1 /* TicketSegmentedControl.swift */; };
+		D3AE25262C5A5C28009BC64C /* iMessageConnect.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AE25252C5A5C28009BC64C /* iMessageConnect.swift */; };
+		D3FFBBED2C58BA330042EAAD /* ActivityPinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFBBEC2C58BA330042EAAD /* ActivityPinView.swift */; };
+		D3FFBBEF2C58BB6A0042EAAD /* ActivityDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFBBEE2C58BB6A0042EAAD /* ActivityDetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		242DF4522C58C5CE006D8627 /* OnboardingPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPageView.swift; sourceTree = "<group>"; };
+		242DF4542C58C6C3006D8627 /* OnboardingTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTabView.swift; sourceTree = "<group>"; };
+		242DF4562C5902F2006D8627 /* OnboardingProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingProfileView.swift; sourceTree = "<group>"; };
+		242DF4582C5A08B4006D8627 /* OnboardingLastPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingLastPageView.swift; sourceTree = "<group>"; };
 		444D2EC52C5767970019A966 /* PiPi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PiPi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		444D2EC82C5767970019A966 /* PiPiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiPiApp.swift; sourceTree = "<group>"; };
 		444D2ECA2C5767970019A966 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -37,6 +55,14 @@
 		444D2EEA2C59BC2B0019A966 /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
 		444D2EED2C59DB510019A966 /* ActivityCreateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityCreateView.swift; sourceTree = "<group>"; };
 		444D2EEF2C59E38B0019A966 /* TopBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarView.swift; sourceTree = "<group>"; };
+		8D451A082C5A8E89005EA90A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		8D8321582C5937CB00C9ABA1 /* TicketsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketsView.swift; sourceTree = "<group>"; };
+		8D83215C2C59655800C9ABA1 /* PeopleListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleListView.swift; sourceTree = "<group>"; };
+		8D83215E2C5967B900C9ABA1 /* TicketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketView.swift; sourceTree = "<group>"; };
+		8D8321602C5968E400C9ABA1 /* TicketSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketSegmentedControl.swift; sourceTree = "<group>"; };
+		D3AE25252C5A5C28009BC64C /* iMessageConnect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iMessageConnect.swift; sourceTree = "<group>"; };
+		D3FFBBEC2C58BA330042EAAD /* ActivityPinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityPinView.swift; sourceTree = "<group>"; };
+		D3FFBBEE2C58BB6A0042EAAD /* ActivityDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,12 +70,25 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D451A0E2C5A8F38005EA90A /* FirebaseDatabase in Frameworks */,
+				8D451A0C2C5A8F38005EA90A /* FirebaseAnalytics in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		242DF44E2C58BA34006D8627 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				242DF4542C58C6C3006D8627 /* OnboardingTabView.swift */,
+				242DF4522C58C5CE006D8627 /* OnboardingPageView.swift */,
+				242DF4582C5A08B4006D8627 /* OnboardingLastPageView.swift */,
+				242DF4562C5902F2006D8627 /* OnboardingProfileView.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
 		444D2EBC2C5767970019A966 = {
 			isa = PBXGroup;
 			children = (
@@ -71,6 +110,7 @@
 			children = (
 				444D2EC82C5767970019A966 /* PiPiApp.swift */,
 				444D2ECA2C5767970019A966 /* ContentView.swift */,
+				8D451A082C5A8E89005EA90A /* GoogleService-Info.plist */,
 				444D2EDA2C58AE9C0019A966 /* Resources */,
 				444D2EE92C59BC150019A966 /* Extensions */,
 				444D2ED62C576CD10019A966 /* Model */,
@@ -107,6 +147,9 @@
 		444D2EDC2C58AEC30019A966 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				D3FFBBE42C58B95C0042EAAD /* ActivityDetail */,
+				8D8321562C5937B100C9ABA1 /* Tickets */,
+				242DF44E2C58BA34006D8627 /* Onboarding */,
 				444D2EDD2C58B53C0019A966 /* Home */,
 				444D2EEC2C59DB3A0019A966 /* ActivityCreate */,
 			);
@@ -140,6 +183,43 @@
 				444D2EEF2C59E38B0019A966 /* TopBarView.swift */,
 			);
 			path = ActivityCreate;
+      sourceTree = "<group>";
+		};
+		8D8321562C5937B100C9ABA1 /* Tickets */ = {
+			isa = PBXGroup;
+			children = (
+				8D8321632C59691900C9ABA1 /* Components */,
+				8D8321622C59691400C9ABA1 /* Views */,
+			);
+			path = Tickets;
+			sourceTree = "<group>";
+		};
+		8D8321622C59691400C9ABA1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8D8321582C5937CB00C9ABA1 /* TicketsView.swift */,
+				8D83215E2C5967B900C9ABA1 /* TicketView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		8D8321632C59691900C9ABA1 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				8D83215C2C59655800C9ABA1 /* PeopleListView.swift */,
+				8D8321602C5968E400C9ABA1 /* TicketSegmentedControl.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		D3FFBBE42C58B95C0042EAAD /* ActivityDetail */ = {
+			isa = PBXGroup;
+			children = (
+				D3FFBBEC2C58BA330042EAAD /* ActivityPinView.swift */,
+				D3FFBBEE2C58BB6A0042EAAD /* ActivityDetailView.swift */,
+				D3AE25252C5A5C28009BC64C /* iMessageConnect.swift */,
+			);
+			path = ActivityDetail;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -158,6 +238,10 @@
 			dependencies = (
 			);
 			name = PiPi;
+			packageProductDependencies = (
+				8D451A0B2C5A8F38005EA90A /* FirebaseAnalytics */,
+				8D451A0D2C5A8F38005EA90A /* FirebaseDatabase */,
+			);
 			productName = PiPi;
 			productReference = 444D2EC52C5767970019A966 /* PiPi.app */;
 			productType = "com.apple.product-type.application";
@@ -186,6 +270,9 @@
 				Base,
 			);
 			mainGroup = 444D2EBC2C5767970019A966;
+			packageReferences = (
+				8D451A0A2C5A8F38005EA90A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 444D2EC62C5767970019A966 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -202,6 +289,7 @@
 			files = (
 				444D2ED02C5767980019A966 /* Preview Assets.xcassets in Resources */,
 				444D2ECD2C5767980019A966 /* Assets.xcassets in Resources */,
+				8D451A092C5A8E89005EA90A /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -212,6 +300,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3AE25262C5A5C28009BC64C /* iMessageConnect.swift in Sources */,
+				8D83215F2C5967B900C9ABA1 /* TicketView.swift in Sources */,
+				242DF4572C5902F2006D8627 /* OnboardingProfileView.swift in Sources */,
+				242DF4552C58C6C3006D8627 /* OnboardingTabView.swift in Sources */,
+				242DF4592C5A08B4006D8627 /* OnboardingLastPageView.swift in Sources */,
+				242DF4532C58C5CE006D8627 /* OnboardingPageView.swift in Sources */,
 				444D2ED82C576CE60019A966 /* Activity.swift in Sources */,
 				444D2EDF2C58B5A20019A966 /* HomeView.swift in Sources */,
 				444D2EE82C59B04A0019A966 /* ActivityCreateButton.swift in Sources */,
@@ -223,6 +317,12 @@
 				444D2EF02C59E38B0019A966 /* TopBarView.swift in Sources */,
 				444D2EC92C5767970019A966 /* PiPiApp.swift in Sources */,
 				444D2EEE2C59DB510019A966 /* ActivityCreateView.swift in Sources */,
+				D3FFBBED2C58BA330042EAAD /* ActivityPinView.swift in Sources */,
+				D3FFBBEF2C58BB6A0042EAAD /* ActivityDetailView.swift in Sources */,
+				8D8321592C5937CB00C9ABA1 /* TicketsView.swift in Sources */,
+				444D2EC92C5767970019A966 /* PiPiApp.swift in Sources */,
+				8D83215D2C59655800C9ABA1 /* PeopleListView.swift in Sources */,
+				8D8321612C5968E400C9ABA1 /* TicketSegmentedControl.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -438,6 +538,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8D451A0A2C5A8F38005EA90A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8D451A0B2C5A8F38005EA90A /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8D451A0A2C5A8F38005EA90A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		8D451A0D2C5A8F38005EA90A /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8D451A0A2C5A8F38005EA90A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabase;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 444D2EBD2C5767970019A966 /* Project object */;
 }
