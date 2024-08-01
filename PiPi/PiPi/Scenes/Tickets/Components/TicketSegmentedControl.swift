@@ -45,7 +45,7 @@ struct TicketSegmentedControl: View {
             }
         }
         .padding(.top, 25)
-        .padding(.bottom, 40)
+        .padding(.bottom, 20)
     }
 }
 

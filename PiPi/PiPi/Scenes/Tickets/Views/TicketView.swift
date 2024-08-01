@@ -30,6 +30,7 @@ struct TicketView: View {
         }
         .frame(height: 350)
         .padding(.horizontal, 15)
+        .padding(.bottom, 10)
         .sheet(isPresented: $isShowingModal) {
             PeopleListView(isParticipantList: $isParticipantTicket)
         }

@@ -20,13 +20,14 @@ struct TicketsView: View {
     
     var body: some View {
         NavigationStack {
-            ZStack {
+            TicketSegmentedControl(selectedItem: $selectedItem)
+            
+            ScrollView {
                 TicketView(selectedItem: $selectedItem, isAuthDone: $isAuthenticated)
-                    .padding(.top, 100)
-                
-                TicketSegmentedControl(selectedItem: $selectedItem)
-                    .padding(.top, -220)
+                TicketView(selectedItem: $selectedItem, isAuthDone: $isAuthenticated)
+                TicketView(selectedItem: $selectedItem, isAuthDone: $isAuthenticated)
             }
+            .scrollBounceBehavior(.basedOnSize)
             
             Spacer()
         }
