@@ -19,6 +19,7 @@
 		444D2EE82C59B04A0019A966 /* ActivityCreateButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D2EE72C59B04A0019A966 /* ActivityCreateButton.swift */; };
 		444D2EEB2C59BC2B0019A966 /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D2EEA2C59BC2B0019A966 /* View+.swift */; };
 		444D2EEE2C59DB510019A966 /* ActivityCreateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D2EED2C59DB510019A966 /* ActivityCreateView.swift */; };
+		444D2EF02C59E38B0019A966 /* TopBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D2EEF2C59E38B0019A966 /* TopBarView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 		444D2EE72C59B04A0019A966 /* ActivityCreateButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityCreateButton.swift; sourceTree = "<group>"; };
 		444D2EEA2C59BC2B0019A966 /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
 		444D2EED2C59DB510019A966 /* ActivityCreateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityCreateView.swift; sourceTree = "<group>"; };
+		444D2EEF2C59E38B0019A966 /* TopBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				444D2EED2C59DB510019A966 /* ActivityCreateView.swift */,
+				444D2EEF2C59E38B0019A966 /* TopBarView.swift */,
 			);
 			path = ActivityCreate;
 			sourceTree = "<group>";
@@ -217,6 +220,7 @@
 				444D2EE62C58C9080019A966 /* TicketProfileButtonView.swift in Sources */,
 				444D2EE42C58C1320019A966 /* CategoryButton.swift in Sources */,
 				444D2ECB2C5767970019A966 /* ContentView.swift in Sources */,
+				444D2EF02C59E38B0019A966 /* TopBarView.swift in Sources */,
 				444D2EC92C5767970019A966 /* PiPiApp.swift in Sources */,
 				444D2EEE2C59DB510019A966 /* ActivityCreateView.swift in Sources */,
 			);
