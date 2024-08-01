@@ -15,18 +15,28 @@ enum TicketType : String, CaseIterable {
 struct TicketsView: View {
     @State private var selectedItem: TicketType = .participant
     @State private var isShowingModal: Bool = false
+    @State private var isAuthenticated: Bool = false
+    @Binding var isShowingSheet: Bool
     
     var body: some View {
         NavigationStack {
-            TicketSegmentedControl(selectedItem: $selectedItem)
-            TicketView(selectedItem: $selectedItem)
+            ZStack {
+                TicketView(selectedItem: $selectedItem, isAuthDone: $isAuthenticated)
+                    .padding(.top, 100)
+                
+                TicketSegmentedControl(selectedItem: $selectedItem)
+                    .padding(.top, -220)
+            }
             
             Spacer()
         }
         .navigationBarBackButtonHidden(true)
+        .sheet(isPresented: $isShowingSheet) {
+            QRAuthView(isShowingAuth: $isShowingSheet, isAuthDone: $isAuthenticated)
+        }
     }
 }
 
 #Preview {
-    TicketsView()
+    TicketsView(isShowingSheet: .constant(false))
 }
