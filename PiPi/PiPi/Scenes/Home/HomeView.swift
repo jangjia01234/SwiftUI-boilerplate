@@ -11,44 +11,50 @@ import MapKit
 struct HomeView: View {
     
     @Namespace private var mapScope
+    @State private var activityCreateViewIsPresented = false
     
     var body: some View {
-        ZStack {
-            Map(scope: mapScope) {
-                
-            }
-            .mapControlVisibility(.hidden)
-            .zIndex(1)
-            
+        NavigationStack {
             ZStack {
-                VStack {
-                    CategoryFilterView()
-                    TicketProfileButtonView()
-                    Spacer()
+                Map(scope: mapScope) {
+                    
                 }
-                HStack {
-                    Spacer()
-                    VStack(spacing: 10) {
+                .mapControlVisibility(.hidden)
+                .zIndex(1)
+                
+                ZStack {
+                    VStack {
+                        CategoryFilterView()
+                        TicketProfileButtonView()
                         Spacer()
-                        VStack(spacing: 5) {
-                            Button(action: {
-                                // TODO: 새로고침 동작 구현
-                            }) {
-                                Image(systemName: "arrow.triangle.2.circlepath")
-                                    .aspectRatio(contentMode: .fit)
-                            }
-                            .setSmallButtonAppearance()
-                            MapUserLocationButton(scope: mapScope)
+                    }
+                    HStack {
+                        Spacer()
+                        VStack(spacing: 10) {
+                            Spacer()
+                            VStack(spacing: 5) {
+                                Button(action: {
+                                    // TODO: 새로고침 동작 구현
+                                }) {
+                                    Image(systemName: "arrow.triangle.2.circlepath")
+                                        .aspectRatio(contentMode: .fit)
+                                }
                                 .setSmallButtonAppearance()
+                                MapUserLocationButton(scope: mapScope)
+                                    .setSmallButtonAppearance()
+                            }
+                            ActivityCreateButton(isPresented: $activityCreateViewIsPresented)
                         }
-                        ActivityCreateButton()
                     }
                 }
+                .padding(.horizontal)
+                .zIndex(2)
             }
-            .padding(.horizontal)
-            .zIndex(2)
+            .mapScope(mapScope)
+            .fullScreenCover(isPresented: $activityCreateViewIsPresented) {
+                ActivityCreateView()
+            }
         }
-        .mapScope(mapScope)
     }
     
 }

@@ -9,9 +9,11 @@ import SwiftUI
 
 struct ActivityCreateButton: View {
     
+    @Binding var isPresented: Bool
+    
     var body: some View {
         Button(action: {
-            // TODO: 활동 등록 화면 시트 표시
+            isPresented = true
         }) {
             Image(systemName: "plus")
                 .resizable()
@@ -28,5 +30,5 @@ struct ActivityCreateButton: View {
 }
 
 #Preview {
-    ActivityCreateButton()
+    ActivityCreateButton(isPresented: .constant(false))
 }
