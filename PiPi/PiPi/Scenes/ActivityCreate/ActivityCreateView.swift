@@ -18,6 +18,7 @@ struct ActivityCreateView: View {
     @State private var category: Activity.Category = .meal
     @State private var startDateTime = Date()
     @State private var estimatedTime: Int? = nil
+    @State private var location: Coordinates? = nil
     
     var body: some View {
         NavigationStack {
@@ -58,6 +59,18 @@ struct ActivityCreateView: View {
                         }
                     } label: {
                         Text("예상 소요시간")
+                    }
+                    NavigationLink(destination: {
+                        LocationSelectView(coordinates: $location)
+                            .navigationBarBackButtonHidden()
+                    }) {
+                        HStack {
+                            Text("위치")
+                            Text(location == nil ? "" : "선택 완료")
+                                .frame(maxWidth: .infinity, alignment: .trailing)
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+                        }
                     }
                 }
             }
