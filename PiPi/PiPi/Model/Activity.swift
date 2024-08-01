@@ -9,7 +9,8 @@ import Foundation
 
 struct Activity: Identifiable {
     
-    let id: UUID = .init()
+    let id: String = UUID().uuidString
+    let hostID: String
     let title: String
     let description: String
     let maxPeopleNumber: Int
@@ -21,9 +22,26 @@ struct Activity: Identifiable {
     
 }
 
+extension Activity: Codable {
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case hostID = "host_id"
+        case title
+        case description
+        case maxPeopleNumber = "max_people_number"
+        case currentPeopleNumber = "current_people_number"
+        case category
+        case startDateTime = "start_date_time"
+        case estimatedTime = "estimated_time"
+        case coordinates
+    }
+    
+}
+
 extension Activity {
     
-    enum Category: String, CaseIterable {
+    enum Category: String, CaseIterable, Codable {
         case meal = "밥"
         case cafe = "카페"
         case alcohol = "술"
