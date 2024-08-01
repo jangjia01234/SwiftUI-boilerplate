@@ -20,6 +20,13 @@ struct ActivityCreateView: View {
     @State private var estimatedTime: Int? = nil
     @State private var location: Coordinates? = nil
     
+    @State private var needValueFilledAlertIsPresented = false
+    @State private var registerAlertIsPresented = false
+    
+    private var allRequestedValuesFilled: Bool {
+        !title.isEmpty && !description.isEmpty && location != nil
+    }
+    
     var body: some View {
         NavigationStack {
             ActivityInformationFormView(
@@ -51,10 +58,21 @@ struct ActivityCreateView: View {
                 
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("완료") {
-                        // TODO: 활동 등록 동작 구현
+                        if allRequestedValuesFilled {
+                            registerAlertIsPresented = true
+                        } else {
+                            needValueFilledAlertIsPresented = true
+                        }
                     }
                 }
             }
+            .alert("필요한 정보를 모두 채워주세요!", isPresented: $needValueFilledAlertIsPresented) {
+                Button("확인") {}
+            }
+            .alert("신청하시겠습니까?", isPresented: $registerAlertIsPresented) {
+                // TODO: Firebase Realtime Database에 쓰기
+            } message: {
+                Text("이벤트를 직접 개설한 후에는 수정할 수 없습니다.")
             }
         }
     }
