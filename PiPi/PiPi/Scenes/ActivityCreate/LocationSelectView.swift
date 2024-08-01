@@ -18,7 +18,7 @@ struct LocationSelectView: View {
     
     init(coordinates: Binding<Coordinates?>) {
         if let coordinates = coordinates.wrappedValue {
-            self.position = .camera(.init(centerCoordinate: .init(coordinates), distance: 200))
+            self.position = .camera(.init(centerCoordinate: .init(coordinates), distance: 1000))
         } else {
             let rect = MKMapRect(origin: .init(.postech), size: .init(width: 2000, height: 2000))
             let region = MKCoordinateRegion(rect)   
