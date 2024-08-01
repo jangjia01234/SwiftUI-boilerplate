@@ -24,8 +24,6 @@ struct TicketsView: View {
             
             ScrollView {
                 TicketView(selectedItem: $selectedItem, isAuthDone: $isAuthenticated)
-                TicketView(selectedItem: $selectedItem, isAuthDone: $isAuthenticated)
-                TicketView(selectedItem: $selectedItem, isAuthDone: $isAuthenticated)
             }
             .scrollBounceBehavior(.basedOnSize)
             

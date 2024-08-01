@@ -9,17 +9,9 @@ import SwiftUI
 
 @main
 struct PiPiApp: App {
-    @State var isSheetPresented = false
-    
     var body: some Scene {
         WindowGroup {
-//            OnboardingTabView()
-            TicketsView(isShowingSheet: $isSheetPresented)
-                .onOpenURL { url in
-                    if url == URL(string: "pipi://auth") {
-                        isSheetPresented = true
-                    }
-                }
+            OnboardingTabView()
         }
     }
 }
