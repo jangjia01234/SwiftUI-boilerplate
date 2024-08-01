@@ -18,15 +18,10 @@ struct ActivityCreateView: View {
     @State private var category: Activity.Category = .meal
     @State private var startDateTime = Date()
     @State private var estimatedTime: Int? = nil
+    @State private var location: Coordinates? = nil
     
     var body: some View {
-        VStack(spacing: 0) {
-            TopBarView() {
-                // TODO: 활동 등록 동작 구현
-            }
-            
-            Divider()
-            
+        NavigationStack {
             Form {
                 Section {
                     TextField("", text: $title)
@@ -65,16 +60,42 @@ struct ActivityCreateView: View {
                     } label: {
                         Text("예상 소요시간")
                     }
+                    NavigationLink(destination: {
+                        LocationSelectView(coordinates: $location)
+                            .navigationBarBackButtonHidden()
+                    }) {
+                        HStack {
+                            Text("위치")
+                            Text(location == nil ? "" : "선택 완료")
+                                .frame(maxWidth: .infinity, alignment: .trailing)
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+                        }
+                    }
                 }
             }
             .padding(.top)
             .background(Color(.secondarySystemBackground))
-        }
-        .toolbar {
-            ToolbarItemGroup(placement: .keyboard) {
-                Spacer()
-                Button("완료") {
-                    isFocused = false
+            .navigationTitle("활동 등록")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItemGroup(placement: .keyboard) {
+                    Spacer()
+                    Button("완료") {
+                        isFocused = false
+                    }
+                }
+                
+                ToolbarItem(placement: .topBarLeading) {
+                    Button("취소") {
+                        dismiss()
+                    }
+                }
+                
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button("완료") {
+                        // TODO: 활동 등록 동작 구현
+                    }
                 }
             }
         }

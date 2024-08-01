@@ -17,8 +17,7 @@ struct Activity: Identifiable {
     let category: Category
     let startDateTime: Date
     let estimatedTime: Int?
-    let latitude: Double
-    let longitude: Double
+    let coordinates: Coordinates
     
 }
 

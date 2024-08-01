@@ -11,7 +11,6 @@
 		242DF4552C58C6C3006D8627 /* OnboardingTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242DF4542C58C6C3006D8627 /* OnboardingTabView.swift */; };
 		242DF4572C5902F2006D8627 /* OnboardingProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242DF4562C5902F2006D8627 /* OnboardingProfileView.swift */; };
 		242DF4592C5A08B4006D8627 /* OnboardingLastPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242DF4582C5A08B4006D8627 /* OnboardingLastPageView.swift */; };
-		444D2EC92C5767970019A966 /* PiPiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D2EC82C5767970019A966 /* PiPiApp.swift */; };
 		444D2ECB2C5767970019A966 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D2ECA2C5767970019A966 /* ContentView.swift */; };
 		444D2ECD2C5767980019A966 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 444D2ECC2C5767980019A966 /* Assets.xcassets */; };
 		444D2ED02C5767980019A966 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 444D2ECF2C5767980019A966 /* Preview Assets.xcassets */; };
@@ -23,7 +22,10 @@
 		444D2EE82C59B04A0019A966 /* ActivityCreateButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D2EE72C59B04A0019A966 /* ActivityCreateButton.swift */; };
 		444D2EEB2C59BC2B0019A966 /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D2EEA2C59BC2B0019A966 /* View+.swift */; };
 		444D2EEE2C59DB510019A966 /* ActivityCreateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D2EED2C59DB510019A966 /* ActivityCreateView.swift */; };
-		444D2EF02C59E38B0019A966 /* TopBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D2EEF2C59E38B0019A966 /* TopBarView.swift */; };
+		444D2EF22C5B2BC60019A966 /* Coordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D2EF12C5B2BC60019A966 /* Coordinates.swift */; };
+		444D2EF42C5B2CD80019A966 /* LocationSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D2EF32C5B2CD80019A966 /* LocationSelectView.swift */; };
+		444D2EF62C5B2D5A0019A966 /* CLLocationCoordinate2D+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D2EF52C5B2D5A0019A966 /* CLLocationCoordinate2D+.swift */; };
+		444D2EF72C5B5AA20019A966 /* PiPiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D2EC82C5767970019A966 /* PiPiApp.swift */; };
 		8D451A092C5A8E89005EA90A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8D451A082C5A8E89005EA90A /* GoogleService-Info.plist */; };
 		8D451A0C2C5A8F38005EA90A /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 8D451A0B2C5A8F38005EA90A /* FirebaseAnalytics */; };
 		8D451A0E2C5A8F38005EA90A /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 8D451A0D2C5A8F38005EA90A /* FirebaseDatabase */; };
@@ -54,7 +56,9 @@
 		444D2EE72C59B04A0019A966 /* ActivityCreateButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityCreateButton.swift; sourceTree = "<group>"; };
 		444D2EEA2C59BC2B0019A966 /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
 		444D2EED2C59DB510019A966 /* ActivityCreateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityCreateView.swift; sourceTree = "<group>"; };
-		444D2EEF2C59E38B0019A966 /* TopBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarView.swift; sourceTree = "<group>"; };
+		444D2EF12C5B2BC60019A966 /* Coordinates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinates.swift; sourceTree = "<group>"; };
+		444D2EF32C5B2CD80019A966 /* LocationSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSelectView.swift; sourceTree = "<group>"; };
+		444D2EF52C5B2D5A0019A966 /* CLLocationCoordinate2D+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocationCoordinate2D+.swift"; sourceTree = "<group>"; };
 		8D451A082C5A8E89005EA90A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8D8321582C5937CB00C9ABA1 /* TicketsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketsView.swift; sourceTree = "<group>"; };
 		8D83215C2C59655800C9ABA1 /* PeopleListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleListView.swift; sourceTree = "<group>"; };
@@ -132,6 +136,7 @@
 			isa = PBXGroup;
 			children = (
 				444D2ED72C576CE60019A966 /* Activity.swift */,
+				444D2EF12C5B2BC60019A966 /* Coordinates.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -172,6 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				444D2EEA2C59BC2B0019A966 /* View+.swift */,
+				444D2EF52C5B2D5A0019A966 /* CLLocationCoordinate2D+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -180,10 +186,10 @@
 			isa = PBXGroup;
 			children = (
 				444D2EED2C59DB510019A966 /* ActivityCreateView.swift */,
-				444D2EEF2C59E38B0019A966 /* TopBarView.swift */,
+				444D2EF32C5B2CD80019A966 /* LocationSelectView.swift */,
 			);
 			path = ActivityCreate;
-      sourceTree = "<group>";
+			sourceTree = "<group>";
 		};
 		8D8321562C5937B100C9ABA1 /* Tickets */ = {
 			isa = PBXGroup;
@@ -300,12 +306,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				444D2EF72C5B5AA20019A966 /* PiPiApp.swift in Sources */,
+				444D2EF62C5B2D5A0019A966 /* CLLocationCoordinate2D+.swift in Sources */,
 				D3AE25262C5A5C28009BC64C /* iMessageConnect.swift in Sources */,
 				8D83215F2C5967B900C9ABA1 /* TicketView.swift in Sources */,
 				242DF4572C5902F2006D8627 /* OnboardingProfileView.swift in Sources */,
 				242DF4552C58C6C3006D8627 /* OnboardingTabView.swift in Sources */,
+				444D2EF22C5B2BC60019A966 /* Coordinates.swift in Sources */,
 				242DF4592C5A08B4006D8627 /* OnboardingLastPageView.swift in Sources */,
 				242DF4532C58C5CE006D8627 /* OnboardingPageView.swift in Sources */,
+				444D2EF42C5B2CD80019A966 /* LocationSelectView.swift in Sources */,
 				444D2ED82C576CE60019A966 /* Activity.swift in Sources */,
 				444D2EDF2C58B5A20019A966 /* HomeView.swift in Sources */,
 				444D2EE82C59B04A0019A966 /* ActivityCreateButton.swift in Sources */,
@@ -314,13 +324,10 @@
 				444D2EE62C58C9080019A966 /* TicketProfileButtonView.swift in Sources */,
 				444D2EE42C58C1320019A966 /* CategoryButton.swift in Sources */,
 				444D2ECB2C5767970019A966 /* ContentView.swift in Sources */,
-				444D2EF02C59E38B0019A966 /* TopBarView.swift in Sources */,
-				444D2EC92C5767970019A966 /* PiPiApp.swift in Sources */,
 				444D2EEE2C59DB510019A966 /* ActivityCreateView.swift in Sources */,
 				D3FFBBED2C58BA330042EAAD /* ActivityPinView.swift in Sources */,
 				D3FFBBEF2C58BB6A0042EAAD /* ActivityDetailView.swift in Sources */,
 				8D8321592C5937CB00C9ABA1 /* TicketsView.swift in Sources */,
-				444D2EC92C5767970019A966 /* PiPiApp.swift in Sources */,
 				8D83215D2C59655800C9ABA1 /* PeopleListView.swift in Sources */,
 				8D8321612C5968E400C9ABA1 /* TicketSegmentedControl.swift in Sources */,
 			);
