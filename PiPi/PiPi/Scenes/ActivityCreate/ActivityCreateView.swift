@@ -43,13 +43,6 @@ struct ActivityCreateView: View {
             .navigationTitle("활동 등록")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItemGroup(placement: .keyboard) {
-                    Spacer()
-                    Button("완료") {
-                        isFocused = false
-                    }
-                }
-                
                 ToolbarItem(placement: .topBarLeading) {
                     Button("취소") {
                         dismiss()
@@ -70,7 +63,12 @@ struct ActivityCreateView: View {
                 Button("확인") {}
             }
             .alert("신청하시겠습니까?", isPresented: $registerAlertIsPresented) {
-                // TODO: Firebase Realtime Database에 쓰기
+                Button("취소") {}
+                Button(action: {
+                    // TODO: Firebase Realtime Database에 쓰기
+                }) {
+                    Text("확인")
+                }
             } message: {
                 Text("이벤트를 직접 개설한 후에는 수정할 수 없습니다.")
             }

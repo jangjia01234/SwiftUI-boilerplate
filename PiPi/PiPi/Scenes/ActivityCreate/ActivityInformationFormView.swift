@@ -27,6 +27,14 @@ struct ActivityInformationFormView: View {
             categoryPicker
             dateTimeLocationSection
         }
+        .toolbar {
+            ToolbarItemGroup(placement: .keyboard) {
+                Spacer()
+                Button("완료") {
+                    isFocused = false
+                }
+            }
+        }
     }
 }
 
