@@ -65,13 +65,38 @@ struct ActivityCreateView: View {
             .alert("신청하시겠습니까?", isPresented: $registerAlertIsPresented) {
                 Button("취소") {}
                 Button(action: {
-                    // TODO: Firebase Realtime Database에 쓰기
+                    registerActivity()
                 }) {
                     Text("확인")
                 }
             } message: {
                 Text("이벤트를 직접 개설한 후에는 수정할 수 없습니다.")
             }
+        }
+    }
+    
+    private func registerActivity() {
+        guard let location else { return }
+        
+        let activity = Activity(
+            hostID: UUID().uuidString,
+            title: title,
+            description: description,
+            maxPeopleNumber: maxPeopleNumber,
+            category: category,
+            startDateTime: startDateTime,
+            estimatedTime: estimatedTime,
+            coordinates: location
+        )
+        
+        do {
+            try FirebaseDataManager.shared.addData(
+                activity,
+                type: .activity,
+                id: activity.id
+            )
+        } catch {
+            dump(error)
         }
     }
     
