@@ -20,13 +20,7 @@ struct ActivityCreateView: View {
     @State private var estimatedTime: Int? = nil
     
     var body: some View {
-        VStack(spacing: 0) {
-            TopBarView() {
-                // TODO: 활동 등록 동작 구현
-            }
-            
-            Divider()
-            
+        NavigationStack {
             Form {
                 Section {
                     TextField("", text: $title)
@@ -69,12 +63,26 @@ struct ActivityCreateView: View {
             }
             .padding(.top)
             .background(Color(.secondarySystemBackground))
-        }
-        .toolbar {
-            ToolbarItemGroup(placement: .keyboard) {
-                Spacer()
-                Button("완료") {
-                    isFocused = false
+            .navigationTitle("활동 등록")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItemGroup(placement: .keyboard) {
+                    Spacer()
+                    Button("완료") {
+                        isFocused = false
+                    }
+                }
+                
+                ToolbarItem(placement: .topBarLeading) {
+                    Button("취소") {
+                        dismiss()
+                    }
+                }
+                
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button("완료") {
+                        // TODO: 활동 등록 동작 구현
+                    }
                 }
             }
         }
