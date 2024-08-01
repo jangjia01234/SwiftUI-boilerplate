@@ -12,8 +12,22 @@ struct LocationSelectView: View {
     
     @Environment(\.dismiss) private var dismiss
     @State private var centerCoordinate: CLLocationCoordinate2D = .init()
-    @State private var position: MapCameraPosition = .rect(.init(origin: .init(.postech), size: .init(width: 2000, height: 2000)))
-
+    @State private var position: MapCameraPosition
+    
+    @Binding var coordinates: Coordinates?
+    
+    init(coordinates: Binding<Coordinates?>) {
+        if let coordinates = coordinates.wrappedValue {
+            self.position = .camera(.init(centerCoordinate: .init(coordinates), distance: 200))
+        } else {
+            let rect = MKMapRect(origin: .init(.postech), size: .init(width: 2000, height: 2000))
+            let region = MKCoordinateRegion(rect)   
+            self.position = .region(region)
+        }
+        
+        self._coordinates = coordinates
+    }
+    
     var body: some View {
         ZStack {
             topBackButton
@@ -24,12 +38,12 @@ struct LocationSelectView: View {
                     centerCoordinate = context.camera.centerCoordinate
                 }
             
-            Image(systemName: "mappin")
+            Image(systemName: "mappin.and.ellipse")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 40, height: 40)
                 .foregroundStyle(.accent)
-                .offset(y: -15)
+                .offset(y: -11.5)
                 .zIndex(2)
             
             bottomSubmitButton
@@ -65,9 +79,12 @@ private extension LocationSelectView {
     var bottomSubmitButton: some View {
         VStack {
             Spacer()
-            
-            Button("배달 위치 선택") {
-                
+            Button("해당 위치 선택") {
+                coordinates = .init(
+                    latitude: centerCoordinate.latitude,
+                    longitude: centerCoordinate.longitude
+                )
+                dismiss()
             }
             .frame(maxWidth: .infinity, maxHeight: 48)
             .background(.accent)
@@ -82,5 +99,5 @@ private extension LocationSelectView {
 }
 
 #Preview {
-    LocationSelectView()
+    LocationSelectView(coordinates: .constant(nil))
 }
