@@ -6,12 +6,16 @@
 //
 
 import SwiftUI
+import CodeScanner
 
 // TODO: 데이터 연결 예정 (현재 목업 데이터로 구성)
 struct TicketView: View {
     @State private var isShowingModal: Bool = false
     @State private var isParticipantTicket: Bool = false
+    @State private var isPresentingScanner = false
+    @State private var scannedCode: String? = nil
     @Binding var selectedItem: TicketType
+    @Binding var isShowingSheet: Bool
     @Binding var isAuthDone: Bool
     
     var body: some View {
@@ -34,6 +38,15 @@ struct TicketView: View {
         .sheet(isPresented: $isShowingModal) {
             PeopleListView(isParticipantList: $isParticipantTicket)
         }
+        .sheet(isPresented: $isPresentingScanner) {
+            CodeScannerView(codeTypes: [.qr]) { response in
+                if case let .success(result) = response {
+                    scannedCode = result.string
+                    isPresentingScanner = false
+                    isShowingSheet = true
+                }
+            }
+        }
     }
 }
 
@@ -50,8 +63,8 @@ fileprivate extension TicketView {
                 
                 VStack(alignment: .trailing) {
                     ticketInfoItem(align: .trailing, title: "날짜", content: "2024.07.29")
-                    // TODO: 인증여부에 따른 상태관리 예정 (참가자/주최자 모두에게 실시간 상태 반영)
                     
+                    // TODO: 인증여부에 따른 상태관리 예정 (참가자/주최자 모두에게 실시간 상태 반영)
                     symbolItem(name: "checkmark.circle.fill", color: isAuthDone ? .yellow : .white)
                         .padding(.top, 2)
                 }
@@ -95,7 +108,11 @@ fileprivate extension TicketView {
                     RoundedRectangle(cornerRadius: 10)
                         .frame(width: 60, height: 60)
                     
-                    symbolItem(name: "camera.fill", font: .title, color: .black)
+                    Button(action: {
+                        isPresentingScanner = true
+                    }, label: {
+                        symbolItem(name: "camera.fill", font: .title, color: .black)
+                    })
                 }
             }
         }
@@ -157,5 +174,5 @@ fileprivate extension Color {
 }
 
 #Preview {
-    TicketView(selectedItem: .constant(.participant), isAuthDone: .constant(false))
+    TicketView(selectedItem: .constant(.participant), isShowingSheet: .constant(false), isAuthDone: .constant(false))
 }

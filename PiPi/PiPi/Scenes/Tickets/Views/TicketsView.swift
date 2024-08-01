@@ -23,7 +23,7 @@ struct TicketsView: View {
             TicketSegmentedControl(selectedItem: $selectedItem)
             
             ScrollView {
-                TicketView(selectedItem: $selectedItem, isAuthDone: $isAuthenticated)
+                TicketView(selectedItem: $selectedItem, isShowingSheet: $isShowingSheet, isAuthDone: $isAuthenticated)
             }
             .scrollBounceBehavior(.basedOnSize)
             
