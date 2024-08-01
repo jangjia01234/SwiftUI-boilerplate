@@ -16,7 +16,7 @@ struct Activity: Identifiable {
     let currentPeopleNumber: Int = 0
     let category: Category
     let startDateTime: Date
-    let endDateTime: Date?
+    let estimatedTime: Int?
     let latitude: Double
     let longitude: Double
     
