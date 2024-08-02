@@ -11,9 +11,9 @@ struct TicketProfileButtonView: View {
     
     var body: some View {
         HStack {
-            Button(action: {
-                // TODO: 티켓 뷰 시트 표시
-            }) {
+            NavigationLink {
+                // TODO: 티켓 뷰 추가
+            } label: {
                 Image(systemName: "ticket.fill")
                     .setAppearance()
             }
@@ -21,9 +21,9 @@ struct TicketProfileButtonView: View {
             
             Spacer()
             
-            Button(action: {
-                // TODO: 프로필 뷰 시트 표시
-            }) {
+            NavigationLink {
+                // TODO: 프로필 뷰 추가
+            } label: {
                 Image(systemName: "person.fill")
                     .setAppearance()
             }
@@ -33,13 +33,13 @@ struct TicketProfileButtonView: View {
 
 }
 
-fileprivate extension Button {
+fileprivate extension NavigationLink {
     
     func setAppearance() -> some View {
         self
             .frame(width: 36, height: 36)
             .background(Color(uiColor: .systemGray2))
-            .tint(.white)
+            .foregroundStyle(.white)
             .clipShape(Circle())
             .setShadow()
     }
