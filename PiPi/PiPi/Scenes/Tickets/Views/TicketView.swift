@@ -54,10 +54,8 @@ fileprivate extension TicketView {
     func header() -> some View {
         VStack {
             HStack(alignment: .top) {
-                
                 symbolItem(name: "figure.run.circle.fill", font: .title2, color: .white)
                 textItem(content: "배드민턴 번개", font: .title2, weight: .bold)
-                
                 
                 Spacer()
                 
@@ -120,13 +118,10 @@ fileprivate extension TicketView {
     
     func ticketInfoItem(align: HorizontalAlignment = .leading, title: String, content: String, isText: Bool = true) -> some View {
         VStack(alignment: align) {
-            Text(title)
-                .font(.caption)
-                .bold()
-                .foregroundColor(Color.lightGray)
+            textItem(content: title, font: .caption, weight: .bold, color: Color.lightGray)
             
             if isText {
-                Text(content)
+                textItem(content: content, font: .callout)
             } else {
                 Button {
                     if !isText {
@@ -137,19 +132,19 @@ fileprivate extension TicketView {
                         }
                     }
                 } label: {
-                    Text(content)
+                    textItem(content: content, font: .callout)
                 }
                 .buttonStyle(.borderedProminent)
                 .tint(selectedItem == .participant ? .accentColor : Color("SubColor"))
-                .font(.callout)
             }
         }
     }
     
-    func textItem(content: String, font: Font = .body, weight: Font.Weight = .regular) -> some View {
+    func textItem(content: String, font: Font = .body, weight: Font.Weight = .regular, color: Color = .white) -> some View {
         Text(content)
             .font(font)
             .fontWeight(weight)
+            .foregroundColor(color)
     }
     
     func symbolItem(name: String, font: Font = .body, color: Color = .gray) -> some View {

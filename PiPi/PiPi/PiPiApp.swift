@@ -9,12 +9,10 @@ import SwiftUI
 
 @main
 struct PiPiApp: App {
-    @State var isShowingSheet: Bool = false
     
     var body: some Scene {
         WindowGroup {
-//            OnboardingTabView()
-            TicketsView(isShowingSheet: $isShowingSheet)
+            OnboardingTabView()
         }
     }
 }

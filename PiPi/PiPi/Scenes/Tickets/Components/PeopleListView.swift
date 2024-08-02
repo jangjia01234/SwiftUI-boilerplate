@@ -27,11 +27,8 @@ struct PeopleListView: View {
                 }
             }
             .navigationBarTitle("리스트", displayMode: .inline)
-            .navigationBarItems(trailing: Button("완료", action: {
-                dismiss()
-            }))
+            .navigationBarItems(trailing: Button("완료", action: { dismiss() }))
         }
-        .foregroundColor(.black)
     }
 }
 
