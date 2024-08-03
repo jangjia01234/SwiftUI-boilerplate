@@ -6,13 +6,25 @@
 //
 
 import SwiftUI
+import Combine
+import FirebaseDatabase
 
-struct RegistrationStatusViewModel: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
-
-#Preview {
-    RegistrationStatusViewModel()
-}
+class RegistrationStatusViewModel: ObservableObject {
+    
+    @ObservedObject var model = ActivityViewModel()
+    
+    
+      @Published var status: String = "모집중"
+      
+      private var cancellables = Set<AnyCancellable>()
+      
+    init() {
+           model.$activity
+               .sink { [weak self] activity in
+                   guard let activity = activity
+                   else { return }
+                   self?.status = activity.currentPeopleNumber >= activity.maxPeopleNumber ? "모집완료" : "모집중"
+               }
+               .store(in: &cancellables)
+       }
+   }

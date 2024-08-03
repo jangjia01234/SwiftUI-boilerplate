@@ -10,6 +10,7 @@ import SwiftUI
 struct ActivityDetailView: View {
     @State private var join = false
     @State private var showMessageView = false
+    @ObservedObject var viewModel = RegistrationStatusViewModel()
     
     var body: some View {
         GeometryReader { geometry in
@@ -20,10 +21,11 @@ struct ActivityDetailView: View {
                             Text("제목")
                                 .font(.title)
                             Spacer()
-                            Text("모집여부")
-                                .font(.callout)
-                                .foregroundColor(.purple)
-                                .padding()
+                            Text(viewModel.status)
+                                      .font(.callout)
+                                      .padding()
+                                      .foregroundColor(viewModel.status == "모집완료" ? .red : .accent)
+                                      .bold()
                         }
                         Text("소제목")
                             .font(.callout)
@@ -39,7 +41,11 @@ struct ActivityDetailView: View {
 
                                 .font(.title)
                             Spacer()
-                            RegistrationStatusView()
+                            Text(viewModel.status)
+                                      .font(.callout)
+                                      .padding()
+                                      .foregroundColor(viewModel.status == "모집완료" ? .red : .accent)
+                                      .bold()
                         }
                         
                         Text("소제목")
@@ -114,10 +120,11 @@ struct ActivityDetailView: View {
                     .font(.callout)
                     .bold()
                     .frame(maxWidth: .infinity, minHeight: 50)
-                    .background(.purple)
+                    .background(viewModel.status == "모집완료" ? Color.gray : Color.accent) 
                     .cornerRadius(10)
                     .padding(.leading)
             }
+            .disabled(viewModel.status == "모집완료")
             .alert(isPresented: $join) {
                 let firstButton = Alert.Button.default(Text("취소")) {
                     print("취소 button pressed")
@@ -132,7 +139,6 @@ struct ActivityDetailView: View {
             }
             
             Button(action: {
-                // TODO: 문의하기 버튼 누르면 아이메시지로 넘어가라
                 self.showMessageView = true
             }) {
                 Image(systemName: "ellipsis.message")
