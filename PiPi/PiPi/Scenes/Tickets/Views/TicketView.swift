@@ -45,6 +45,7 @@ struct TicketView: View {
     @StateObject private var viewModel = ActivityViewModel()
     @State private var isShowingModal: Bool = false
     @State private var isParticipantTicket: Bool = false
+    @State private var isLocationVisible: Bool = false
     @State private var isPresentingScanner = false
     @State private var scannedCode: String? = nil
     @Binding var selectedItem: TicketType
@@ -69,7 +70,7 @@ struct TicketView: View {
         .padding(.horizontal, 15)
         .padding(.bottom, 10)
         .sheet(isPresented: $isShowingModal) {
-            PeopleListView(isParticipantList: $isParticipantTicket)
+            TicketDetailView(isParticipantList: $isParticipantTicket, isLocationVisible: $isLocationVisible)
         }
         .sheet(isPresented: $isPresentingScanner) {
             CodeScannerView(codeTypes: [.qr]) { response in
@@ -117,7 +118,7 @@ fileprivate extension TicketView {
             }
             .padding(.bottom, 10)
             
-            ticketInfoItem(title: "장소", content: "체육관")
+            ticketInfoItem(title: "장소", content: "위치 확인", isText: false)
         }
     }
     
@@ -162,10 +163,22 @@ fileprivate extension TicketView {
             } else {
                 Button {
                     if !isText {
-                        isShowingModal = true
-                        
-                        if content == "리스트" {
+                        switch content {
+                        case "리스트":
+                            isShowingModal = true
                             isParticipantTicket = true
+                            isLocationVisible = false
+                            return
+                        case "위치 확인":
+                            isShowingModal = true
+                            isParticipantTicket = false
+                            isLocationVisible = true
+                            return
+                        default:
+                            isShowingModal = true
+                            isParticipantTicket = false
+                            isLocationVisible = false
+                            break
                         }
                     }
                 } label: {
