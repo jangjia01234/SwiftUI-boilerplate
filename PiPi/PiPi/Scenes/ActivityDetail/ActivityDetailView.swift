@@ -6,46 +6,63 @@
 //
 
 import SwiftUI
+import MapKit
+import CoreLocation
 
 struct ActivityDetailView: View {
+    
+    @Binding var id: String
+    
     @State private var join = false
     @State private var showMessageView = false
+    @State private var coordinates: Coordinates?
+    @State private var errorMessage: String?
+    @State private var isLocationVisible: Bool = false
+    
+    @ObservedObject var model = ActivityViewModel()
+    
     
     var body: some View {
         GeometryReader { geometry in
             VStack {
                 if geometry.size.height <= 150 {
+                    
                     VStack{
-                        HStack{
-                            Text("제목")
-                                .font(.title)
-                            Spacer()
-                            Text("모집여부")
+                        if let activity = model.activity {
+                            HStack{
+                                Text(activity.title)
+                                    .font(.title)
+                                Spacer()
+                                Text("모집여부")
+                                    .font(.callout)
+                                    .background(.accent)
+                                    .padding()
+                            }
+                            Text(activity.description)
                                 .font(.callout)
-                                .foregroundColor(.purple)
-                                .padding()
+                                .foregroundColor(.gray)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                        } else if let errorMessage = errorMessage {
+                            Text("Error: \(errorMessage)")
+                        } else {
+                            Text("Loading...")
                         }
-                        Text("소제목")
-                            .font(.callout)
-                            .foregroundColor(.gray)
-                            .frame(maxWidth: .infinity, alignment: .leading)
                     }
                     .padding([.top, .leading], 10)
-                }
-                else {
+                } else {
                     VStack {
                         HStack {
-                            Text("제목")
-
+                            Text(model.activity?.title ?? "제목")
                                 .font(.title)
                             Spacer()
                             Text("모집여부")
+                                .foregroundColor(.accent)
+                                .bold()
                                 .font(.callout)
                                 .padding()
-                                .foregroundColor(.purple)
                         }
                         
-                        Text("소제목")
+                        Text(model.activity?.description ?? "소제목")
                             .font(.callout)
                             .foregroundColor(.gray)
                             .frame(maxWidth: .infinity, alignment: .leading)
@@ -53,51 +70,56 @@ struct ActivityDetailView: View {
                     .padding([.top, .leading], 20)
                     
                     List {
-                        Section {
-                            HStack {
-                                Text("날짜")
-                                    .frame(width: 100, alignment: .leading)
-                                Text("Date")
-                            }
-                            HStack {
-                                Text("시작시간")
-                                    .frame(width: 100, alignment: .leading)
-                                Text("00:00")
-                            }
-                            HStack {
-                                Text("종료시간")
-                                    .frame(width: 100, alignment: .leading)
-                                Text("00:00")
-                            }
-                            HStack {
-                                Text("최대인원")
-                                    .frame(width: 100, alignment: .leading)
-                                Text("5")
-                            }
-                            HStack {
-                                Text("카테고리")
-                                    .frame(width: 100, alignment: .leading)
-                                Text("이넘 중 1개")
-                            }
-                            HStack {
-                                Text("위치")
-                                    .frame(width: 100, alignment: .leading)
-                                Text("지도에서 보여주기")
+                        Section(header: Text("활동 정보")) {
+                            VStack(alignment: .leading, spacing: 8) {
+                                HStack {
+                                    Text("날짜")
+                                        .frame(width: 120, alignment: .leading)
+                                    Text(model.activity?.startDateTime.toString() ?? "Date")
+                                }
+                                HStack {
+                                    Text("시작시간")
+                                        .frame(width: 120, alignment: .leading)
+                                    Text(model.activity?.startDateTime.toString(format: "HH:mm") ?? "00:00")
+                                }
+                                HStack {
+                                    Text("예상 소요시간")
+                                        .frame(width: 120, alignment: .leading)
+                                    Text("\(model.activity?.estimatedTime ?? 0)시간")
+                                }
+                                HStack {
+                                    Text("최대인원")
+                                        .frame(width: 120, alignment: .leading)
+                                    Text("\(model.activity?.maxPeopleNumber ?? 0)")
+                                }
+                                HStack {
+                                    Text("카테고리")
+                                        .frame(width: 120, alignment: .leading)
+                                    Text(model.activity?.category.rawValue ?? "")
+                                }
+                                HStack {
+                                    Text("위치")
+                                        .frame(width: 120, alignment: .leading)
+                                    Button("지도보기") {
+                                        isLocationVisible = true
+                                    }
+                                }
                             }
                         }
                         .listRowBackground(Color(.secondarySystemBackground))
-                        // 주최자 정보
-                        // TODO: 주최자 정보 서버에서 불러오기
-                        Section {
-                            HStack {
-                                Text("주최자")
-                                    .frame(width: 100, alignment: .leading)
-                                Text("배드민턴왕위니")
-                            }
-                            HStack {
-                                Text("참여도")
-                                    .frame(width: 100, alignment: .leading)
-                                Text("Lv.10")
+                        
+                        Section(header: Text("주최자 정보")) {
+                            VStack(alignment: .leading, spacing: 8) {
+                                HStack {
+                                    Text("주최자")
+                                        .frame(width: 120, alignment: .leading)
+                                    Text("배드민턴왕위니")
+                                }
+                                HStack {
+                                    Text("참여도")
+                                        .frame(width: 120, alignment: .leading)
+                                    Text("Lv.10")
+                                }
                             }
                         }
                         .listRowBackground(Color(.secondarySystemBackground))
@@ -108,7 +130,7 @@ struct ActivityDetailView: View {
             }
         }
         
-        HStack{
+        HStack {
             Button(action: {
                 self.join.toggle()
             }) {
@@ -117,7 +139,7 @@ struct ActivityDetailView: View {
                     .font(.callout)
                     .bold()
                     .frame(maxWidth: .infinity, minHeight: 50)
-                    .background(.purple)
+                    .background(.accent)
                     .cornerRadius(10)
                     .padding(.leading)
             }
@@ -126,7 +148,7 @@ struct ActivityDetailView: View {
                     print("취소 button pressed")
                 }
                 let secondButton = Alert.Button.cancel(Text("신청")) {
-                    //TODO: 신청 버튼 누르면 사용자의 정보가 서버 신청자 데이터로 넘어감
+                    // TODO: 신청 버튼 누르면 사용자의 정보가 서버 신청자 데이터로 넘어감
                     print("신청 button pressed")
                 }
                 return Alert(title: Text("신청하시겠습니까?"),
@@ -135,7 +157,6 @@ struct ActivityDetailView: View {
             }
             
             Button(action: {
-                // TODO: 문의하기 버튼 누르면 아이메시지로 넘어가라
                 self.showMessageView = true
             }) {
                 Image(systemName: "ellipsis.message")
@@ -146,15 +167,20 @@ struct ActivityDetailView: View {
             }
             .padding(.trailing)
             .sheet(isPresented: $showMessageView) {
-                        iMessageConnect()
-                    }
+                iMessageConnect()
+            }
+        }
+        .sheet(isPresented: $isLocationVisible) {
+            if let activity = model.activity {
+                SelectedMapView(coordinate: activity.coordinates.toCLLocationCoordinate2D)
+            } else {
+                Text("위치 정보를 불러올 수 없습니다.")
+            }
         }
     }
 }
 
-
-
 #Preview {
-    ActivityDetailView()
+    ActivityDetailView(id: .constant("C6D5689C-ABB7-4D81-99C8-ACBEA9D2E513"))
         .background(.white)
 }
