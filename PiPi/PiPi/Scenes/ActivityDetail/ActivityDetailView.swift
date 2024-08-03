@@ -39,10 +39,7 @@ struct ActivityDetailView: View {
 
                                 .font(.title)
                             Spacer()
-                            Text("모집여부")
-                                .font(.callout)
-                                .padding()
-                                .foregroundColor(.purple)
+                            RegistrationStatusView()
                         }
                         
                         Text("소제목")
