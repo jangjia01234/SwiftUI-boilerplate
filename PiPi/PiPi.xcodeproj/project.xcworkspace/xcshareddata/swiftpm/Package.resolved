@@ -1,5 +1,5 @@
 {
-  "originHash" : "c63c63846d9c539229e96de38d6af51417e28c0ee9a0bc48bd0f0f19d923c329",
+  "originHash" : "6cd0e42c6e6a5ad9a18c9eebade48b20a8126691a1ac772b118a578a5559fa0f",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -26,7 +26,7 @@
       "state" : {
         "revision" : "34da57fb63b47add20de8a85da58191523ccce57",
         "version" : "2.5.0"
-       }
+      }
     },
     {
       "identity" : "firebase-ios-sdk",
