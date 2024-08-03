@@ -45,7 +45,7 @@ struct OnboardingLastPageView: View {
                         .fontWeight(.bold)
                         .foregroundColor(.white)
                         .frame(width: 332, height: 48)
-                        .background(Color.purple)
+                        .background(Color("AccentColor"))
                         .cornerRadius(10)
                 }
                 .padding(.top, 600)
@@ -54,7 +54,7 @@ struct OnboardingLastPageView: View {
                     navigateToProfile = true
                 } label: {
                     Text("건너뛰기")
-                        .foregroundColor(Color.purple)
+                        .foregroundColor(Color("AccentColor"))
                         .font(.system(size: 16))
                 }
                 .padding(.bottom, 720)
