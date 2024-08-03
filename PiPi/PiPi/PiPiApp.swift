@@ -23,7 +23,7 @@ struct PiPiApp: App {
     
     var body: some Scene {
         WindowGroup {
-            OnboardingTabView()
+            ContentView()
         }
     }
 }

@@ -7,11 +7,45 @@
 
 import SwiftUI
 import CodeScanner
+import FirebaseDatabase
+
+class ActivityViewModel: ObservableObject {
+    @Published var activity: Activity?
+    
+    private var ref: DatabaseReference!
+    
+    init() {
+        ref = Database.database().reference()
+        fetchActivityData()
+    }
+    
+    func fetchActivityData() {
+        let activityID = "7C92703C-1958-433B-9648-CF49B1D84F7E"
+        
+        ref.child("activities/\(activityID)").observeSingleEvent(of: .value) { snapshot in
+            guard let value = snapshot.value as? [String: Any] else {
+                return
+            }
+            
+            do {
+                let jsonData = try JSONSerialization.data(withJSONObject: value)
+                let activity = try JSONDecoder().decode(Activity.self, from: jsonData)
+                DispatchQueue.main.async {
+                    self.activity = activity
+                }
+            } catch let error {
+                print("Error decoding activity data: \(error.localizedDescription)")
+            }
+        }
+    }
+}
 
 // TODO: 데이터 연결 예정 (현재 목업 데이터로 구성)
 struct TicketView: View {
+    @StateObject private var viewModel = ActivityViewModel()
     @State private var isShowingModal: Bool = false
     @State private var isParticipantTicket: Bool = false
+    @State private var isLocationVisible: Bool = false
     @State private var isPresentingScanner = false
     @State private var scannedCode: String? = nil
     @Binding var selectedItem: TicketType
@@ -36,7 +70,7 @@ struct TicketView: View {
         .padding(.horizontal, 15)
         .padding(.bottom, 10)
         .sheet(isPresented: $isShowingModal) {
-            PeopleListView(isParticipantList: $isParticipantTicket)
+            TicketDetailView(isParticipantList: $isParticipantTicket, isLocationVisible: $isLocationVisible)
         }
         .sheet(isPresented: $isPresentingScanner) {
             CodeScannerView(codeTypes: [.qr]) { response in
@@ -53,18 +87,20 @@ struct TicketView: View {
 fileprivate extension TicketView {
     func header() -> some View {
         VStack {
-            HStack(alignment: .top) {
-                symbolItem(name: "figure.run.circle.fill", font: .title2, color: .white)
-                textItem(content: "배드민턴 번개", font: .title2, weight: .bold)
-                
-                Spacer()
-                
-                VStack(alignment: .trailing) {
-                    ticketInfoItem(align: .trailing, title: "날짜", content: "2024.07.29")
+            if let activity = viewModel.activity {
+                HStack(alignment: .top) {
+                    symbolItem(name: "figure.run.circle.fill", font: .title2, color: .white)
+                    textItem(content: activity.title, font: .title2, weight: .bold)
                     
-                    // TODO: 인증여부에 따른 상태관리 예정 (참가자/주최자 모두에게 실시간 상태 반영)
-                    symbolItem(name: "checkmark.circle.fill", color: isAuthDone ? .yellow : .white)
-                        .padding(.top, 2)
+                    Spacer()
+                    
+                    VStack(alignment: .trailing) {
+                        ticketInfoItem(align: .trailing, title: "날짜", content: "\(activity.startDateTime.toString())")
+                        
+                        // TODO: 인증여부에 따른 상태관리 예정 (참가자/주최자 모두에게 실시간 상태 반영)
+                        symbolItem(name: "checkmark.circle.fill", color: isAuthDone ? .yellow : .white)
+                            .padding(.top, 2)
+                    }
                 }
             }
         }
@@ -82,35 +118,37 @@ fileprivate extension TicketView {
             }
             .padding(.bottom, 10)
             
-            ticketInfoItem(title: "장소", content: "체육관")
+            ticketInfoItem(title: "장소", content: "위치 확인", isText: false)
         }
     }
     
     func authenticationSection() -> some View {
         HStack(alignment: .bottom) {
-            ticketInfoItem(title: "시간", content: "19:30 - 21:30")
-            
-            Spacer()
-            
-            // TODO: 인증 기능 구현 예정
-            if selectedItem == .participant {
-                ZStack {
-                    RoundedRectangle(cornerRadius: 10)
-                        .frame(width: 80, height: 80)
-                    
-                    GenerateQRCodeView(inputText: "pipi://auth")
-                        .frame(width: 60, height: 60)
-                }
-            } else {
-                ZStack {
-                    RoundedRectangle(cornerRadius: 10)
-                        .frame(width: 60, height: 60)
-                    
-                    Button(action: {
-                        isPresentingScanner = true
-                    }, label: {
-                        symbolItem(name: "camera.fill", font: .title, color: .black)
-                    })
+            if let activity = viewModel.activity {
+                ticketInfoItem(title: "소요시간", content: "\(activity.estimatedTime ?? 0)분")
+                
+                Spacer()
+                
+                // TODO: 인증 기능 구현 예정
+                if selectedItem == .participant {
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 10)
+                            .frame(width: 80, height: 80)
+                        
+                        GenerateQRCodeView(inputText: "pipi://auth")
+                            .frame(width: 60, height: 60)
+                    }
+                } else {
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 10)
+                            .frame(width: 60, height: 60)
+                        
+                        Button(action: {
+                            isPresentingScanner = true
+                        }, label: {
+                            symbolItem(name: "camera.fill", font: .title, color: .black)
+                        })
+                    }
                 }
             }
         }
@@ -125,10 +163,22 @@ fileprivate extension TicketView {
             } else {
                 Button {
                     if !isText {
-                        isShowingModal = true
-                        
-                        if content == "리스트" {
+                        switch content {
+                        case "리스트":
+                            isShowingModal = true
                             isParticipantTicket = true
+                            isLocationVisible = false
+                            return
+                        case "위치 확인":
+                            isShowingModal = true
+                            isParticipantTicket = false
+                            isLocationVisible = true
+                            return
+                        default:
+                            isShowingModal = true
+                            isParticipantTicket = false
+                            isLocationVisible = false
+                            break
                         }
                     }
                 } label: {
@@ -165,6 +215,15 @@ fileprivate extension Color {
     
     static var lightGray: Color {
         return Color(Color(red: 215 / 255, green: 215 / 255, blue: 215 / 255))
+    }
+}
+
+fileprivate extension Date {
+    func toString(format: String = "yyyy/MM/dd") -> String {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        formatter.dateFormat = format
+        return formatter.string(from: self)
     }
 }
 
