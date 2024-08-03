@@ -33,7 +33,7 @@ struct TicketDetailView: View {
                     }
                 }
             }
-            .navigationBarTitle("리스트", displayMode: .inline)
+            .navigationBarTitle("상세정보", displayMode: .inline)
             .navigationBarItems(trailing: Button("완료", action: {
                 dismiss()
             }))
