@@ -14,7 +14,7 @@ struct Activity: Identifiable {
     let title: String
     let description: String
     let maxPeopleNumber: Int
-    let currentPeopleNumber: Int = 0
+    let participantID: [String]
     let category: Category
     let startDateTime: Date
     let estimatedTime: Int?
@@ -30,7 +30,7 @@ extension Activity: Codable {
         case title
         case description
         case maxPeopleNumber = "max_people_number"
-        case currentPeopleNumber = "current_people_number"
+        case participantID
         case category
         case startDateTime = "start_date_time"
         case estimatedTime = "estimated_time"

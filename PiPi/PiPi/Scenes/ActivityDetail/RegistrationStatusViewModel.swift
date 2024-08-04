@@ -23,7 +23,7 @@ class RegistrationStatusViewModel: ObservableObject {
                .sink { [weak self] activity in
                    guard let activity = activity
                    else { return }
-                   self?.status = activity.currentPeopleNumber >= activity.maxPeopleNumber ? "모집완료" : "모집중"
+                   self?.status = activity.participantID.count >= activity.maxPeopleNumber ? "모집완료" : "모집중"
                }
                .store(in: &cancellables)
        }
