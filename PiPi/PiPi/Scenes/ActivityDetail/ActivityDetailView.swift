@@ -10,6 +10,7 @@ import SwiftUI
 struct ActivityDetailView: View {
     @State private var join = false
     @State private var showMessageView = false
+    @Binding var nickname: String
     
     var body: some View {
         GeometryReader { geometry in
@@ -135,7 +136,6 @@ struct ActivityDetailView: View {
             }
             
             Button(action: {
-                // TODO: 문의하기 버튼 누르면 아이메시지로 넘어가라
                 self.showMessageView = true
             }) {
                 Image(systemName: "ellipsis.message")
@@ -154,7 +154,9 @@ struct ActivityDetailView: View {
 
 
 
+
+
 #Preview {
-    ActivityDetailView()
+    ActivityDetailView(nickname: .constant("역적"))
         .background(.white)
 }
