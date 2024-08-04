@@ -70,33 +70,15 @@ struct ActivityDetailView: View {
                     .padding([.top, .leading], 20)
                     
                     List {
-                        Section(header: Text("활동 정보")) {
+                        Section {
                             VStack(alignment: .leading, spacing: 8) {
-                                HStack {
-                                    Text("날짜")
-                                        .frame(width: 120, alignment: .leading)
-                                    Text(model.activity?.startDateTime.toString() ?? "Date")
-                                }
-                                HStack {
-                                    Text("시작시간")
-                                        .frame(width: 120, alignment: .leading)
-                                    Text(model.activity?.startDateTime.toString(format: "HH:mm") ?? "00:00")
-                                }
-                                HStack {
-                                    Text("예상 소요시간")
-                                        .frame(width: 120, alignment: .leading)
-                                    Text("\(model.activity?.estimatedTime ?? 0)시간")
-                                }
-                                HStack {
-                                    Text("최대인원")
-                                        .frame(width: 120, alignment: .leading)
-                                    Text("\(model.activity?.maxPeopleNumber ?? 0)")
-                                }
-                                HStack {
-                                    Text("카테고리")
-                                        .frame(width: 120, alignment: .leading)
-                                    Text(model.activity?.category.rawValue ?? "")
-                                }
+                                
+                                ActivityDetail(label: "날짜", activityData: model.activity?.startDateTime.toString() ?? "Date")
+                                ActivityDetail(label: "시작시간", activityData: model.activity?.startDateTime.toString(format: "HH:mm") ?? "00:00")
+                                ActivityDetail(label: "예상 소요시간", activityData: "\(model.activity?.estimatedTime ?? 0)시간")
+                                ActivityDetail(label: "최대인원", activityData: "\(model.activity?.maxPeopleNumber ?? 0)")
+                                ActivityDetail(label: "카테고리", activityData: model.activity?.category.rawValue ?? "")
+                                
                                 HStack {
                                     Text("위치")
                                         .frame(width: 120, alignment: .leading)
@@ -179,6 +161,22 @@ struct ActivityDetailView: View {
         }
     }
 }
+
+
+struct ActivityDetail : View {
+    var label : String
+    var activityData : String
+    
+    var body: some View {
+        HStack {
+            Text(label)
+                .frame(width: 120, alignment: .leading)
+            Text(activityData)
+        }
+    }
+}
+
+
 
 #Preview {
     ActivityDetailView(id: .constant("C6D5689C-ABB7-4D81-99C8-ACBEA9D2E513"))
