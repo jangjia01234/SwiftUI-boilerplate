@@ -12,6 +12,7 @@ struct OnboardingProfileView: View {
     @Binding var isFirstLaunching: Bool
     @State private var isNavigationActive: Bool = false
     
+    
     @State private var nickname: String = ""
     @State private var affiliation: String = ""
     @State private var address: String = ""
@@ -82,7 +83,8 @@ struct OnboardingProfileView: View {
                 .padding(.bottom, 25)
                 
                 Button {
-                    isFirstLaunching.toggle()
+                    //                isFirstLaunching.toggle()
+                    saveProfile()
                     isNavigationActive = true
                     
                 } label: {
@@ -90,7 +92,7 @@ struct OnboardingProfileView: View {
                         .fontWeight(.bold)
                         .foregroundColor(.white)
                         .frame(width: 332, height: 48)
-                        .background(Color("SubColor"))
+                        .background(Color.orange)
                         .cornerRadius(10)
                 }
                 .padding(.bottom, 186)
@@ -103,6 +105,25 @@ struct OnboardingProfileView: View {
                 }
             }
             .navigationBarBackButtonHidden(true)
+        }
+    }
+    private func saveProfile() {
+        let userID = UUID().uuidString
+        let profile = UserProfile(
+            id: userID,
+            nickname: nickname,
+            affiliation: affiliation,
+            address: "\(address)@icloud.com", // 이메일 주소에 @icloud.com 추가
+            level: "Lv.1" // 예시로 레벨을 기본값으로 설정
+        )
+        
+        do {
+            try FirebaseDataManager.shared.addData(profile, type: .user, id: profile.id)
+            print("UserProfile 저장 성공")
+            UserDefaults.standard.setValue(userID, forKey: "userID")
+            isFirstLaunching.toggle() // 프로필 저장 후 화면 전환
+        } catch {
+            print("UserProfile 저장 실패: \(error)")
         }
     }
 }

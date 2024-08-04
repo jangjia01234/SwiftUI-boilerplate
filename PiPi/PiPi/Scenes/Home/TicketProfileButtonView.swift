@@ -22,6 +22,7 @@ struct TicketProfileButtonView: View {
             Spacer()
             
             NavigationLink {
+                ProfileView()
                 // TODO: 프로필 뷰 추가
             } label: {
                 Image(systemName: "person.fill")

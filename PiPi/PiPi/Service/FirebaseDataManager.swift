@@ -29,7 +29,34 @@ final class FirebaseDataManager {
             .child(id)
             .setValue(jsonString)
     }
+    func fetchData<T: Decodable>(type: DataType, id: String, completion: @escaping (Result<T, Error>) -> Void) {
+        ref.child(type.key)
+            .child(id)
+            .observeSingleEvent(of: .value) { snapshot in
+                if snapshot.exists() {
+                    guard let value = snapshot.value as? [String: Any] else {
+                        completion(.failure(FirebaseError.dataNotFound))
+                        return
+                    }
+                    
+                    do {
+                        let data = try JSONSerialization.data(withJSONObject: value, options: [])
+                        let decodedData = try JSONDecoder().decode(T.self, from: data)
+                        completion(.success(decodedData))
+                    } catch {
+                        print("Decoding error: \(error)")
+                        completion(.failure(error))
+                    }
+                } else {
+                    completion(.failure(FirebaseError.dataNotFound))
+                    print("No data available for the provided ID.")
+                }
+            }
+    }
     
+    enum FirebaseError: Error {
+        case dataNotFound
+    }
 }
 
 extension FirebaseDataManager {
