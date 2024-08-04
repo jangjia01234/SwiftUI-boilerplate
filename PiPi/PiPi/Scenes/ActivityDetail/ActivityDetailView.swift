@@ -150,7 +150,7 @@ struct ActivityDetailView: View {
                 }
                 let secondButton = Alert.Button.cancel(Text("신청")) {
                     // TODO: 신청 버튼 누르면 사용자의 정보가 서버 신청자 데이터로 넘어감
-                    addParticipant(nickname: nickname)
+     
                 }
                 return Alert(title: Text("신청하시겠습니까?"),
                              message: Text("신청이 완료된 이벤트는 티켓에 추가됩니다."),
@@ -179,24 +179,10 @@ struct ActivityDetailView: View {
             }
         }
     }
-    
-    
-    private func addParticipant(nickname: String) {
-        guard let activityID = model.activity?.id else { return }
-        
-        let ref = Database.database().reference()
-        ref.child("activities/\(activityID)/participants").observeSingleEvent(of: .value) { snapshot in
-            var participants = snapshot.value as? [String] ?? []
-            participants.append(nickname)
-            ref.child("activities/\(activityID)/participants").setValue(participants)
-        }
-    }
-}
-
 }
 
 
 #Preview {
-    ActivityDetailView(id: .constant("C6D5689C-ABB7-4D81-99C8-ACBEA9D2E513"))
+    ActivityDetailView(id: .constant("C6D5689C-ABB7-4D81-99C8-ACBEA9D2E513"), nickname: .constant("d"))
         .background(.white)
 }
