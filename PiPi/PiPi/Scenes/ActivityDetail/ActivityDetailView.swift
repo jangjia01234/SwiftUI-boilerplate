@@ -8,6 +8,7 @@
 import SwiftUI
 import MapKit
 import CoreLocation
+import FirebaseDatabase
 
 struct ActivityDetailView: View {
     
@@ -22,6 +23,14 @@ struct ActivityDetailView: View {
     
     @ObservedObject var model = ActivityViewModel()
     
+    @AppStorage("userID") private var userID: String?
+    private var ref: DatabaseReference!
+    
+    init(id: Binding<String>, nickname: Binding<String>) {
+        self._id = id
+        self._nickname = nickname
+        self.ref = Database.database().reference()
+    }
     
     var body: some View {
         GeometryReader { geometry in
@@ -150,7 +159,7 @@ struct ActivityDetailView: View {
                 }
                 let secondButton = Alert.Button.cancel(Text("신청")) {
                     // TODO: 신청 버튼 누르면 사용자의 정보가 서버 신청자 데이터로 넘어감
-     
+                    addParticipant()
                 }
                 return Alert(title: Text("신청하시겠습니까?"),
                              message: Text("신청이 완료된 이벤트는 티켓에 추가됩니다."),
@@ -179,10 +188,38 @@ struct ActivityDetailView: View {
             }
         }
     }
+    
+    
+    private func addParticipant() {
+        guard let userID = userID else {
+            print("User ID is not set")
+            return
+        }
+        
+        guard var activity = model.activity else {
+            print("Activity not loaded")
+            return
+        }
+        
+        if !activity.participantID.contains(userID) {
+            activity.participantID.append(userID)
+            model.activity = activity
+            
+            let activityData = try! JSONEncoder().encode(activity)
+            let json = try! JSONSerialization.jsonObject(with: activityData, options: .fragmentsAllowed)
+            ref.child("activities/\(activity.id)").setValue(json) { error, _ in
+                if let error = error {
+                    print("Error updating participant ID: \(error.localizedDescription)")
+                } else {
+                    print("Participant ID updated successfully")
+                }
+            }
+        } else {
+            print("Participant already exists")
+        }
+    }
 }
-
 
 #Preview {
     ActivityDetailView(id: .constant("C6D5689C-ABB7-4D81-99C8-ACBEA9D2E513"), nickname: .constant("d"))
-        .background(.white)
 }

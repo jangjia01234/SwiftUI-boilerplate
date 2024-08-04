@@ -14,11 +14,28 @@ struct Activity: Identifiable {
     let title: String
     let description: String
     let maxPeopleNumber: Int
-    let participantID: [String]
+    var participantID: [String]
     let category: Category
     let startDateTime: Date
     let estimatedTime: Int?
     let coordinates: Coordinates
+    
+      func addingParticipant(_ participant: String) -> Activity {
+          var newParticipantID = participantID
+          newParticipantID.append(participant)
+          
+          return Activity(
+              hostID: hostID,
+              title: title,
+              description: description,
+              maxPeopleNumber: maxPeopleNumber,
+              participantID: newParticipantID,
+              category: category,
+              startDateTime: startDateTime,
+              estimatedTime: estimatedTime,
+              coordinates: coordinates
+          )
+      }
     
 }
 
