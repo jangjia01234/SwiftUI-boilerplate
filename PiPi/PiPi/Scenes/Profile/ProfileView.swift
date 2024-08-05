@@ -12,8 +12,8 @@ struct ProfileView: View {
     
     @State private var nickname: String = ""
     @State private var affiliation: String = ""
-    @State private var address: String = ""
-    @State private var level: String = ""
+    @State private var email: String = ""
+    @State private var level: Int = 1
     
     @AppStorage("userID") var userID: String?  // @AppStorage로 UserDefaults로부터 값 불러올떄
     private let databaseManager = FirebaseDataManager.shared
@@ -72,7 +72,7 @@ struct ProfileView: View {
                         HStack {
                             Text("이메일")
                                 .frame(width: 60, alignment: .leading)
-                            Text(address)
+                            Text(email)
                                 .padding(.leading, 10)
                             Spacer()
                         }
@@ -80,7 +80,7 @@ struct ProfileView: View {
                         HStack {
                             Text("레벨")
                                 .frame(width: 60, alignment: .leading)
-                            Text(level)
+                            Text("Lv.\(level)")
                                 .padding(.leading, 10)
                             Spacer()
                         }
@@ -106,7 +106,7 @@ struct ProfileView: View {
                 DispatchQueue.main.async {
                     self.nickname = profile.nickname
                     self.affiliation = profile.affiliation
-                    self.address = profile.address
+                    self.email = profile.email
                     self.level = profile.level
                 }
             case .failure(let error):

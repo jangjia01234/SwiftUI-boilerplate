@@ -24,7 +24,7 @@ struct OnboardingTabView: View {
                 // 페이지 1: 포피와 애피
                 OnboardingPageView(imageName: "onboarding1",
                                    title: "포피와 애피의 만남을 점으로 찍어보세요",
-                                   subtitle: "가깝지만 먼 포스텍 피플과 애플 피플의 교집합", navigateToProfile: $navigateToProfile)
+                                   subtitle: "가깝l지만 먼 포스텍 피플과 애플 피플의 교집합", navigateToProfile: $navigateToProfile)
                 // 페이지 2: 활동 등록
                 OnboardingPageView(imageName: "onboarding2",
                                    title: "우리가 같이 놀 수 있는 이벤트를 등록해요",
