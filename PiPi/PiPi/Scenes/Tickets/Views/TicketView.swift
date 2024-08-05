@@ -163,23 +163,7 @@ fileprivate extension TicketView {
             } else {
                 Button {
                     if !isText {
-                        switch content {
-                        case "리스트":
-                            isShowingModal = true
-                            isParticipantTicket = true
-                            isLocationVisible = false
-                            return
-                        case "위치 확인":
-                            isShowingModal = true
-                            isParticipantTicket = false
-                            isLocationVisible = true
-                            return
-                        default:
-                            isShowingModal = true
-                            isParticipantTicket = false
-                            isLocationVisible = false
-                            break
-                        }
+                        handleModalStatus(content: content)
                     }
                 } label: {
                     textItem(content: content, font: .callout)
@@ -202,6 +186,26 @@ fileprivate extension TicketView {
             .font(font)
             .foregroundColor(color)
     }
+    
+    func handleModalStatus(content: String) {
+        switch content {
+        case "리스트":
+            isShowingModal = true
+            isParticipantTicket = true
+            isLocationVisible = false
+            return
+        case "위치 확인":
+            isShowingModal = true
+            isParticipantTicket = false
+            isLocationVisible = true
+            return
+        default:
+            isShowingModal = true
+            isParticipantTicket = false
+            isLocationVisible = false
+            break
+        }
+    }
 }
 
 fileprivate extension Color {
@@ -215,15 +219,6 @@ fileprivate extension Color {
     
     static var lightGray: Color {
         return Color(Color(red: 215 / 255, green: 215 / 255, blue: 215 / 255))
-    }
-}
-
-extension Date {
-    func toString(format: String = "yyyy/MM/dd") -> String {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .short
-        formatter.dateFormat = format
-        return formatter.string(from: self)
     }
 }
 
