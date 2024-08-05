@@ -40,7 +40,7 @@ struct OnboardingPageView: View {
                 navigateToProfile = true
             } label: {
                 Text("건너뛰기")
-                    .foregroundColor(Color.purple)
+                    .foregroundColor(.accent)
                     .font(.system(size: 16))
             }
             .padding(.bottom, 720)

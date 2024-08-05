@@ -18,7 +18,7 @@ struct ActivityPinView: View {
             ActivityPin = true
         }
         .sheet(isPresented: $ActivityPin) {
-            ActivityDetailView()
+            ActivityDetailView(id: .constant("C6D5689C-ABB7-4D81-99C8-ACBEA9D2E513"))
                 .background(Color(.white))
                 .presentationDetents([.height(150), .height(650)])
                 .presentationCornerRadius(21)

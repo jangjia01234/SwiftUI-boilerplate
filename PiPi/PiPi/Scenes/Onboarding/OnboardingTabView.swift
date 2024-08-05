@@ -11,8 +11,8 @@ struct OnboardingTabView: View {
     
     init() {
         // UIPageControl의 Appearance 설정
-        UIPageControl.appearance().currentPageIndicatorTintColor = .purple // 현재 페이지 색상
-        UIPageControl.appearance().pageIndicatorTintColor = UIColor.purple.withAlphaComponent(0.2) // 다른 페이지 색상
+        UIPageControl.appearance().currentPageIndicatorTintColor = .accent // 현재 페이지 색상
+        UIPageControl.appearance().pageIndicatorTintColor = UIColor.accent.withAlphaComponent(0.2) // 다른 페이지 색상
     }
     
     @State private var navigateToProfile = false
