@@ -42,6 +42,7 @@
 		8D8321612C5968E400C9ABA1 /* TicketSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8321602C5968E400C9ABA1 /* TicketSegmentedControl.swift */; };
 		D32FE2602C5E57960048FDBD /* SelectedMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32FE25F2C5E57960048FDBD /* SelectedMapView.swift */; };
 		D3AE25262C5A5C28009BC64C /* iMessageConnect.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AE25252C5A5C28009BC64C /* iMessageConnect.swift */; };
+		D3D0CB1F2C5E75A100075BF5 /* RegistrationStatusViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D0CB1E2C5E75A100075BF5 /* RegistrationStatusViewModel.swift */; };
 		D3FFBBED2C58BA330042EAAD /* ActivityPinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFBBEC2C58BA330042EAAD /* ActivityPinView.swift */; };
 		D3FFBBEF2C58BB6A0042EAAD /* ActivityDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFBBEE2C58BB6A0042EAAD /* ActivityDetailView.swift */; };
 /* End PBXBuildFile section */
@@ -81,6 +82,7 @@
 		8D8321602C5968E400C9ABA1 /* TicketSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketSegmentedControl.swift; sourceTree = "<group>"; };
 		D32FE25F2C5E57960048FDBD /* SelectedMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedMapView.swift; sourceTree = "<group>"; };
 		D3AE25252C5A5C28009BC64C /* iMessageConnect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iMessageConnect.swift; sourceTree = "<group>"; };
+		D3D0CB1E2C5E75A100075BF5 /* RegistrationStatusViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationStatusViewModel.swift; sourceTree = "<group>"; };
 		D3FFBBEC2C58BA330042EAAD /* ActivityPinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityPinView.swift; sourceTree = "<group>"; };
 		D3FFBBEE2C58BB6A0042EAAD /* ActivityDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -263,6 +265,7 @@
 			children = (
 				D3FFBBEC2C58BA330042EAAD /* ActivityPinView.swift */,
 				D3FFBBEE2C58BB6A0042EAAD /* ActivityDetailView.swift */,
+				D3D0CB1E2C5E75A100075BF5 /* RegistrationStatusViewModel.swift */,
 				D3AE25252C5A5C28009BC64C /* iMessageConnect.swift */,
 				D32FE25F2C5E57960048FDBD /* SelectedMapView.swift */,
 			);
@@ -362,6 +365,7 @@
 				242DF4592C5A08B4006D8627 /* OnboardingLastPageView.swift in Sources */,
 				242DF4532C58C5CE006D8627 /* OnboardingPageView.swift in Sources */,
 				24334D5E2C5E5AB300F1B66E /* ProfileView.swift in Sources */,
+				D3D0CB1F2C5E75A100075BF5 /* RegistrationStatusViewModel.swift in Sources */,
 				444D2EF42C5B2CD80019A966 /* LocationSelectView.swift in Sources */,
 				D32FE2602C5E57960048FDBD /* SelectedMapView.swift in Sources */,
 				444D2ED82C576CE60019A966 /* Activity.swift in Sources */,

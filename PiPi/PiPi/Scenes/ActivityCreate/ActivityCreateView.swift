@@ -83,6 +83,7 @@ struct ActivityCreateView: View {
             title: title,
             description: description,
             maxPeopleNumber: maxPeopleNumber,
+            participantID: [],
             category: category,
             startDateTime: startDateTime,
             estimatedTime: estimatedTime,

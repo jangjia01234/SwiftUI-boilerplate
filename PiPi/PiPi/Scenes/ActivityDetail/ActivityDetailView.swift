@@ -15,12 +15,11 @@ struct ActivityDetailView: View {
     
     @State private var join = false
     @State private var showMessageView = false
+    @ObservedObject var viewModel = RegistrationStatusViewModel()
     @State private var coordinates: Coordinates?
     @State private var errorMessage: String?
     @State private var isLocationVisible: Bool = false
-    
     @ObservedObject var model = ActivityViewModel()
-    
     
     var body: some View {
         GeometryReader { geometry in
@@ -55,11 +54,11 @@ struct ActivityDetailView: View {
                             Text(model.activity?.title ?? "제목")
                                 .font(.title)
                             Spacer()
-                            Text("모집여부")
-                                .foregroundColor(.accent)
-                                .bold()
-                                .font(.callout)
-                                .padding()
+                            Text(viewModel.status)
+                                      .font(.callout)
+                                      .padding()
+                                      .foregroundColor(viewModel.status == "모집완료" ? .red : .accent)
+                                      .bold()
                         }
                         
                         Text(model.activity?.description ?? "소제목")
@@ -121,10 +120,11 @@ struct ActivityDetailView: View {
                     .font(.callout)
                     .bold()
                     .frame(maxWidth: .infinity, minHeight: 50)
-                    .background(.accent)
+                    .background(viewModel.status == "모집완료" ? Color.gray : Color.accent) 
                     .cornerRadius(10)
                     .padding(.leading)
             }
+            .disabled(viewModel.status == "모집완료")
             .alert(isPresented: $join) {
                 let firstButton = Alert.Button.default(Text("취소")) {
                     print("취소 button pressed")
