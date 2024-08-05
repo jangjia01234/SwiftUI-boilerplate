@@ -14,6 +14,7 @@ struct ProfileView: View {
     @State private var affiliation: String = ""
     @State private var email: String = ""
     @State private var level: Int = 1
+    @State private var isEditing: Bool = false
     
     @AppStorage("userID") var userID: String?  // @AppStorage로 UserDefaults로부터 값 불러올떄
     private let databaseManager = FirebaseDataManager.shared
@@ -42,53 +43,68 @@ struct ProfileView: View {
                 HStack {
                     Spacer()
                     Button {
-                        // TODO : CRUD 수정 구현
+                        if isEditing {
+                            saveProfile()
+                        } else {
+                            isEditing.toggle()
+                        }
                     } label: {
-                        Text("수정")
+                        Text(isEditing ? "완료" : "수정")
+                            .fontWeight(isEditing ? .bold : .regular)
                             .padding(.trailing, 23)
                             .padding(.bottom, -10)
-                            .foregroundColor(Color("AccentColor"))
+                            .foregroundColor(.accent)
                     }
                 }
                 
-                List {
-                    Section {
-                        HStack {
-                            Text("닉네임")
-                                .frame(width: 60, alignment: .leading)
-                            Text(nickname)
-                                .padding(.leading, 10)
-                            Spacer()
+                if isEditing {
+                    List {
+                        Section {
+                            EditableField(title: "닉네임", text: $nickname)
+                            EditableField(title: "이메일", text: $email)
                         }
-                        
-                        HStack {
-                            Text("소속")
-                                .frame(width: 60, alignment: .leading)
-                            Text(affiliation)
-                                .padding(.leading, 10)
-                            Spacer()
-                        }
-                        
-                        HStack {
-                            Text("이메일")
-                                .frame(width: 60, alignment: .leading)
-                            Text(email)
-                                .padding(.leading, 10)
-                            Spacer()
-                        }
-                        
-                        HStack {
-                            Text("레벨")
-                                .frame(width: 60, alignment: .leading)
-                            Text("Lv.\(level)")
-                                .padding(.leading, 10)
-                            Spacer()
-                        }
+                        .listRowBackground(Color(.secondarySystemBackground))
                     }
-                    .listRowBackground(Color(.secondarySystemBackground))
+                    .scrollContentBackground(.hidden)
+                } else {
+                    List {
+                        Section {
+                            HStack {
+                                Text("닉네임")
+                                    .frame(width: 60, alignment: .leading)
+                                Text(nickname)
+                                    .padding(.leading, 10)
+                                Spacer()
+                            }
+                            
+                            HStack {
+                                Text("소속")
+                                    .frame(width: 60, alignment: .leading)
+                                Text(affiliation)
+                                    .padding(.leading, 10)
+                                Spacer()
+                            }
+                            
+                            HStack {
+                                Text("이메일")
+                                    .frame(width: 60, alignment: .leading)
+                                Text(email)
+                                    .padding(.leading, 10)
+                                Spacer()
+                            }
+                            
+                            HStack {
+                                Text("레벨")
+                                    .frame(width: 60, alignment: .leading)
+                                Text("Lv.\(level)")
+                                    .padding(.leading, 10)
+                                Spacer()
+                            }
+                        }
+                        .listRowBackground(Color(.secondarySystemBackground))
+                    }
+                    .scrollContentBackground(.hidden)
                 }
-                
-                .scrollContentBackground(.hidden)
             }
             .onAppear {
                 if let userID = userID {
@@ -116,8 +132,41 @@ struct ProfileView: View {
             }
         }
     }
+    private func saveProfile() {
+            guard let userID = userID else { return }
+            
+            let profile = UserProfile(
+                id: userID,
+                nickname: nickname,
+                affiliation: affiliation,
+                email: email,
+                level: level
+            )
+            
+            do {
+                try databaseManager.updateData(profile, type: .user, id: profile.id)
+                print("UserProfile 수정 성공")
+                isEditing = false // 수정 완료 후 편집 모드 해제
+            } catch {
+                print("UserProfile 수정 실패: \(error.localizedDescription)")
+            }
+        }
 }
 
+struct EditableField: View {
+    let title: String
+    @Binding var text: String
+    
+    var body: some View {
+        HStack {
+            Text(title)
+                .frame(width: 60, alignment: .leading)
+            TextField(title, text: $text)
+                .padding(.leading, 10)
+            Spacer()
+        }
+    }
+}
 
 #Preview {
     ProfileView()

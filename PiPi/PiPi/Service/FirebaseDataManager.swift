@@ -29,6 +29,7 @@ final class FirebaseDataManager {
             .child(id)
             .setValue(jsonString)
     }
+    
     func fetchData<T: Decodable>(type: DataType, id: String, completion: @escaping (Result<T, Error>) -> Void) {
         ref.child(type.key)
             .child(id)
@@ -54,8 +55,18 @@ final class FirebaseDataManager {
             }
     }
     
+    func updateData<T: Encodable>(_ data: T, type: DataType, id: String) throws {
+        let data = try JSONEncoder().encode(data)
+        let jsonString = try JSONSerialization.jsonObject(with: data)
+        
+        ref.child(type.key)
+            .child(id)
+            .setValue(jsonString)
+    }
+    
     enum FirebaseError: Error {
         case dataNotFound
+        case invalidData
     }
 }
 
