@@ -55,6 +55,7 @@ struct HomeView: View {
                 ActivityCreateView()
             }
         }
+        .navigationBarBackButtonHidden(true)
     }
     
 }
