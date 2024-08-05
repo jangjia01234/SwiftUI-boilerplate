@@ -12,7 +12,7 @@ struct OnboardingProfileView: View {
     @Binding var isFirstLaunching: Bool
     @State private var isNavigationActive: Bool = false
     
-    
+
     @State private var nickname: String = ""
     @State private var affiliation: String = ""
     @State private var address: String = ""

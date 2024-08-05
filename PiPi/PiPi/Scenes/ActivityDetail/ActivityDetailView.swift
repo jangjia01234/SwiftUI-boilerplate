@@ -202,7 +202,7 @@ struct ActivityDetailView: View {
         }
         
         if !activity.participantID.contains(userID) {
-            activity.participantID.append(userID)
+            activity = activity.addingParticipant(userID)
             model.activity = activity
             
             let activityData = try! JSONEncoder().encode(activity)
