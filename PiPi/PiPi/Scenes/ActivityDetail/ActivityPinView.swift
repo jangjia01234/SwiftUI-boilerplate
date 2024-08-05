@@ -6,10 +6,10 @@
 //
 
 import SwiftUI
-import MessageUI
 
 struct ActivityPinView: View {
     @State private var ActivityPin = false
+    @Binding var nickname: String
     
     var body: some View {
         Text("맵")
@@ -18,7 +18,7 @@ struct ActivityPinView: View {
             ActivityPin = true
         }
         .sheet(isPresented: $ActivityPin) {
-            ActivityDetailView(id: .constant("C6D5689C-ABB7-4D81-99C8-ACBEA9D2E513"))
+            ActivityDetailView(id: .constant("C6D5689C-ABB7-4D81-99C8-ACBEA9D2E513"), nickname: .constant("d"))
                 .background(Color(.white))
                 .presentationDetents([.height(150), .height(650)])
                 .presentationCornerRadius(21)
@@ -29,5 +29,5 @@ struct ActivityPinView: View {
 
 
 #Preview {
-    ActivityPinView()
+    ActivityPinView(nickname: .constant("역적"))
 }

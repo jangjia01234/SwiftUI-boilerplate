@@ -10,12 +10,12 @@ import SwiftUI
 struct OnboardingProfileView: View {
     
     @Binding var isFirstLaunching: Bool
+    
     @State private var isNavigationActive: Bool = false
     @State private var nickname: String = ""
     @State private var affiliation: String = ""
     @State private var email: String = ""
     @State private var level: Int = 1
-    
     
     let affiliations = Affiliation.allCases.map { $0.rawValue }
     
@@ -121,7 +121,7 @@ struct OnboardingProfileView: View {
             nickname: nickname,
             affiliation: affiliation,
             email: "\(email)@icloud.com",
-            level: level// 예시로 레벨을 기본값으로 설정
+            level: level // 예시로 레벨을 기본값으로 설정
         )
         
         do {

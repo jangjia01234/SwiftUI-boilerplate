@@ -9,7 +9,7 @@ import Foundation
 
 struct Activity: Identifiable {
     
-    let id: String = UUID().uuidString
+    let id: String
     let hostID: String
     let title: String
     let description: String
@@ -19,6 +19,45 @@ struct Activity: Identifiable {
     let startDateTime: Date
     let estimatedTime: Int?
     let coordinates: Coordinates
+    
+    init(
+        id: String = UUID().uuidString,
+        hostID: String,
+        title: String,
+        description: String,
+        maxPeopleNumber: Int,
+        participantID: [String] = [],
+        category: Category,
+        startDateTime: Date, 
+        estimatedTime: Int?,
+        coordinates: Coordinates
+    ) {
+        self.id = id
+        self.hostID = hostID
+        self.title = title
+        self.description = description
+        self.maxPeopleNumber = maxPeopleNumber
+        self.participantID = participantID
+        self.category = category
+        self.startDateTime = startDateTime
+        self.estimatedTime = estimatedTime
+        self.coordinates = coordinates
+    }
+    
+    func addingParticipant(_ participant: String) -> Activity {
+        Activity(
+            id: id,
+            hostID: hostID,
+            title: title,
+            description: description,
+            maxPeopleNumber: maxPeopleNumber,
+            participantID: participantID + [participant],
+            category: category,
+            startDateTime: startDateTime,
+            estimatedTime: estimatedTime,
+            coordinates: coordinates
+        )
+    }
     
 }
 
