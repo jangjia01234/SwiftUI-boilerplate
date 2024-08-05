@@ -52,8 +52,8 @@ struct OnboardingProfileView: View {
                             .padding(.leading, 8)
                         Spacer()
                     }
+
                     
-                    //수정
                     Picker("소속을 선택해주세요.", selection: $affiliation) {
                         ForEach(affiliations, id: \.self) { affiliation in
                             Text(affiliation).tag(affiliation)
@@ -70,7 +70,6 @@ struct OnboardingProfileView: View {
                         Spacer()
                     }
                     
-                    //이 부분
                     HStack(spacing: 4) {
                         TextField("이메일을 입력해주세요.", text: $email)
                             .textFieldStyle(PlainTextFieldStyle())
