@@ -47,7 +47,7 @@ extension Activity: Codable {
         case title
         case description
         case maxPeopleNumber = "max_people_number"
-        case participantID
+        case participantID = "participant_id"
         case category
         case startDateTime = "start_date_time"
         case estimatedTime = "estimated_time"
