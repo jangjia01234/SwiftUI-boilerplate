@@ -16,23 +16,19 @@ struct ActivityDetailView: View {
     @Binding var id: String
     @Binding var nickname: String
     
+    @State private var activity: Activity?
     @State private var join = false
     @State private var showMessageView = false
     @State private var coordinates: Coordinates?
     @State private var errorMessage: String?
     @State private var isLocationVisible: Bool = false
     
-    @ObservedObject var model = ActivityViewModel()
+    private let databaseManager = FirebaseDataManager.shared
+    
     @ObservedObject var viewModel = RegistrationStatusViewModel()
     
     @AppStorage("userID") private var userID: String?
-    private var ref: DatabaseReference!
     
-    init(id: Binding<String>, nickname: Binding<String>) {
-        self._id = id
-        self._nickname = nickname
-        self.ref = Database.database().reference()
-    }
     
     var body: some View {
         GeometryReader { geometry in
@@ -40,7 +36,7 @@ struct ActivityDetailView: View {
                 if geometry.size.height <= 150 {
                     
                     VStack{
-                        if let activity = model.activity {
+                        if let activity = activity {
                             HStack{
                                 Text(activity.title)
                                     .font(.title)
@@ -64,7 +60,7 @@ struct ActivityDetailView: View {
                 } else {
                     VStack {
                         HStack {
-                            Text(model.activity?.title ?? "제목")
+                            Text(activity?.title ?? "제목")
                                 .font(.title)
                             Spacer()
                             Text(viewModel.status)
@@ -73,7 +69,7 @@ struct ActivityDetailView: View {
                                       .foregroundColor(viewModel.status == "모집완료" ? .red : .accent)
                                       .bold()
                         }
-                        Text(model.activity?.description ?? "소제목")
+                        Text(activity?.description ?? "소제목")
                             .font(.callout)
                             .foregroundColor(.gray)
                             .frame(maxWidth: .infinity, alignment: .leading)
@@ -84,11 +80,11 @@ struct ActivityDetailView: View {
                         Section {
                             VStack(alignment: .leading, spacing: 8) {
                                 
-                                ActivityDetail(label: "날짜", activityData: model.activity?.startDateTime.toString() ?? "Date")
-                                ActivityDetail(label: "시작시간", activityData: model.activity?.startDateTime.toString(format: "HH:mm") ?? "00:00")
-                                ActivityDetail(label: "예상 소요시간", activityData: "\(model.activity?.estimatedTime ?? 0)시간")
-                                ActivityDetail(label: "최대인원", activityData: "\(model.activity?.maxPeopleNumber ?? 0)")
-                                ActivityDetail(label: "카테고리", activityData: model.activity?.category.rawValue ?? "")
+                                ActivityDetail(label: "날짜", activityData: activity?.startDateTime.toString() ?? "Date")
+                                ActivityDetail(label: "시작시간", activityData: activity?.startDateTime.toString(format: "HH:mm") ?? "00:00")
+                                ActivityDetail(label: "예상 소요시간", activityData: "\(activity?.estimatedTime ?? 0)시간")
+                                ActivityDetail(label: "최대인원", activityData: "\(activity?.maxPeopleNumber ?? 0)")
+                                ActivityDetail(label: "카테고리", activityData: activity?.category.rawValue ?? "")
                                 
                                 HStack {
                                     Text("위치")
@@ -122,6 +118,9 @@ struct ActivityDetailView: View {
                 }
             }
         }
+        .onAppear {
+            fetchActivityData()
+        }
         
         HStack {
             Button(action: {
@@ -132,7 +131,7 @@ struct ActivityDetailView: View {
                     .font(.callout)
                     .bold()
                     .frame(maxWidth: .infinity, minHeight: 50)
-                    .background(viewModel.status == "모집완료" ? Color.gray : Color.accent) 
+                    .background(viewModel.status == "모집완료" ? Color.gray : Color.accent)
                     .cornerRadius(10)
                     .padding(.leading)
             }
@@ -165,36 +164,51 @@ struct ActivityDetailView: View {
             }
         }
         .sheet(isPresented: $isLocationVisible) {
-            if let activity = model.activity {
+            if let activity = activity {
                 SelectedMapView(coordinate: activity.coordinates.toCLLocationCoordinate2D)
             } else {
                 Text("위치 정보를 불러올 수 없습니다.")
             }
         }
     }
+    
+    
+    private func fetchActivityData() {
+          databaseManager.fetchData(type: .activity, dataID: id) { (result: Result<Activity, Error>) in
+              switch result {
+              case .success(let fetchedActivity):
+                  DispatchQueue.main.async {
+                      self.activity = fetchedActivity
+                  }
+              case .failure(let error):
+                  DispatchQueue.main.async {
+                      self.errorMessage = error.localizedDescription
+                  }
+              }
+          }
+      }
+      
+    
     private func addParticipant() {
         guard let userID = userID else {
             print("User ID is not set")
             return
         }
         
-        guard var activity = model.activity else {
+        guard var activity = activity else {
             print("Activity not loaded")
             return
         }
         
         if !activity.participantID.contains(userID) {
             activity = activity.addingParticipant(userID)
-            model.activity = activity
+            self.activity = activity
             
-            let activityData = try! JSONEncoder().encode(activity)
-            let json = try! JSONSerialization.jsonObject(with: activityData, options: .fragmentsAllowed)
-            ref.child("activities/\(activity.id)").setValue(json) { error, _ in
-                if let error = error {
-                    print("Error updating participant ID: \(error.localizedDescription)")
-                } else {
-                    print("Participant ID updated successfully")
-                }
+            do {
+                try databaseManager.updateData(activity, type: .activity, id: activity.id) // 데이터 업데이트
+                print("Participant ID updated successfully")
+            } catch {
+                print("Error updating participant ID: \(error.localizedDescription)")
             }
         } else {
             print("Participant already exists")
@@ -216,5 +230,5 @@ struct ActivityDetail : View {
 }
 
 #Preview {
-    ActivityDetailView(id: .constant("C6D5689C-ABB7-4D81-99C8-ACBEA9D2E513"), nickname: .constant("d"))
+    ActivityDetailView(id: .constant("10790E3E-B2AA-4AAF-9C17-43F30BF54B4A"), nickname: .constant("d"))
 }
