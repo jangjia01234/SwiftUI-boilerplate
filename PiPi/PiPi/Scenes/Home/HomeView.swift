@@ -23,7 +23,15 @@ struct HomeView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                Map(selection: $selectedMarkerID, scope: mapScope) {
+                Map(
+                    bounds: .init(
+                        centerCoordinateBounds: .cameraBoundary,
+                        minimumDistance: 500,
+                        maximumDistance: 2000
+                    ),
+                    selection: $selectedMarkerID,
+                    scope: mapScope
+                ) {
                     ForEach(activitiesToShow, id: \.id) { activity in
                         Marker(coordinate: activity.coordinates.toCLLocationCoordinate2D) {
                             Image("\(activity.category.self).white")
