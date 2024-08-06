@@ -13,6 +13,7 @@ struct HomeView: View {
     @Namespace private var mapScope
     @State private var activityCreateViewIsPresented = false
     @State private var selectedMarkerID: String?
+    @State private var showActivityDetail = false
     @State private var selectedCategory: Activity.Category? = nil
     @State private var activities: [Activity] = []
     @State private var activitiesToShow: [Activity] = []
@@ -71,11 +72,20 @@ struct HomeView: View {
                 }
             }
         }
+        .onChange(of: selectedMarkerID) {
+            showActivityDetail = (selectedMarkerID != nil)
+        }
+        .sheet(isPresented: $showActivityDetail) {
+            if let selectedID = selectedMarkerID {
+                ActivityDetailView(id: .constant(selectedID), nickname: .constant("d"))
+                    .background(Color(.white))
+                    .presentationDetents([.height(150), .height(650)])
+                    .presentationCornerRadius(21)
+                    .presentationDragIndicator(.visible)
+            }
+        }
         .onChange(of: activities) {
             activitiesToShow = activities
-        }
-        .onChange(of: selectedMarkerID) {
-            //TODO: 활동 디테일 모달 표시
         }
         .onChange(of: selectedCategory) {
             guard let selectedCategory else {
@@ -85,7 +95,6 @@ struct HomeView: View {
             activitiesToShow = activities.filter { $0.category == selectedCategory }
         }
     }
-    
 }
 
 fileprivate extension View {
