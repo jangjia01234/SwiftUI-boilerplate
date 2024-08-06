@@ -11,6 +11,7 @@ import MapKit
 struct HomeView: View {
     
     @Namespace private var mapScope
+    @State private var cameraPosition: MapCameraPosition = .camera(.init(centerCoordinate: .postech, distance: 1500))
     @State private var activityCreateViewIsPresented = false
     @State private var selectedMarkerID: String?
     @State private var showActivityDetail = false
@@ -24,10 +25,11 @@ struct HomeView: View {
         NavigationStack {
             ZStack {
                 Map(
+                    position: $cameraPosition,
                     bounds: .init(
                         centerCoordinateBounds: .cameraBoundary,
                         minimumDistance: 500,
-                        maximumDistance: 2000
+                        maximumDistance: 3000
                     ),
                     selection: $selectedMarkerID,
                     scope: mapScope

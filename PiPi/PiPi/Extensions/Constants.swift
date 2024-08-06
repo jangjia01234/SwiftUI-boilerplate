@@ -20,8 +20,8 @@ extension MKCoordinateRegion {
     
     static let cameraBoundary = MKCoordinateRegion(
         center: .postech,
-        latitudinalMeters: 3000,
-        longitudinalMeters: 2000
+        latitudinalMeters: 4000,
+        longitudinalMeters: 4000
     )
     
 }
