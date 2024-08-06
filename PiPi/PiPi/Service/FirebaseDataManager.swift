@@ -48,6 +48,20 @@ final class FirebaseDataManager {
             self?.handleSnapshot(snapshot: snapshot, dataID: dataID, completion: completion)
         }
     }
+    
+    func observeData<T: Decodable>(
+        eventType: DataEventType,
+        dataType: DataType,
+        dataID: String? = nil,
+        completion: @escaping (Result<T, Error>) -> Void
+    ) {
+        var databaseRef = ref.child(dataType.key)
+        if let dataID {
+            databaseRef = databaseRef.child(dataID)
+        }
+        
+        databaseRef.observe(eventType) { [weak self] snapshot in
+            self?.handleSnapshot(snapshot: snapshot, dataID: dataID, completion: completion)
         }
     }
     
