@@ -102,7 +102,7 @@ struct ActivityDetailView: View {
         Button(action: {
             self.join.toggle()
         }) {
-            Text("참가신청")
+            Text("참가 신청")
                 .foregroundColor(.white)
                 .font(.callout)
                 .bold()
