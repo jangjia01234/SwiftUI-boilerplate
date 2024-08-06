@@ -17,6 +17,7 @@ struct ActivityDetailView: View {
     @Binding var nickname: String
     
     @State private var activity: Activity?
+    @State private var hostUser: UserProfile?
     @State private var join = false
     @State private var showMessageView = false
     @State private var coordinates: Coordinates?
@@ -42,10 +43,10 @@ struct ActivityDetailView: View {
                                     .font(.title)
                                 Spacer()
                                 Text(viewModel.status)
-                                          .font(.callout)
-                                          .padding()
-                                          .foregroundColor(viewModel.status == "모집완료" ? .red : .accent)
-                                          .bold()
+                                    .font(.callout)
+                                    .padding()
+                                    .foregroundColor(viewModel.status == "모집완료" ? .red : .accent)
+                                    .bold()
                             }
                             Text(activity.description)
                                 .font(.callout)
@@ -65,10 +66,10 @@ struct ActivityDetailView: View {
                                 .font(.title)
                             Spacer()
                             Text(viewModel.status)
-                                      .font(.callout)
-                                      .padding()
-                                      .foregroundColor(viewModel.status == "모집완료" ? .red : .accent)
-                                      .bold()
+                                .font(.callout)
+                                .padding()
+                                .foregroundColor(viewModel.status == "모집완료" ? .red : .accent)
+                                .bold()
                         }
                         Text(activity?.description ?? "소제목")
                             .font(.callout)
@@ -103,12 +104,12 @@ struct ActivityDetailView: View {
                                 HStack {
                                     Text("주최자")
                                         .frame(width: 120, alignment: .leading)
-                                    Text("배드민턴왕위니")
+                                    Text(hostUser?.nickname ?? "Loading...")
                                 }
                                 HStack {
                                     Text("참여도")
                                         .frame(width: 120, alignment: .leading)
-                                    Text("Lv.10")
+                                    Text("Lv.\(hostUser?.level ?? 0)")
                                 }
                             }
                         }
@@ -173,22 +174,37 @@ struct ActivityDetailView: View {
         }
     }
     
-    
     private func fetchActivityData() {
-          databaseManager.fetchData(type: .activity, dataID: id) { (result: Result<Activity, Error>) in
-              switch result {
-              case .success(let fetchedActivity):
-                  DispatchQueue.main.async {
-                      self.activity = fetchedActivity
-                  }
-              case .failure(let error):
-                  DispatchQueue.main.async {
-                      self.errorMessage = error.localizedDescription
-                  }
-              }
-          }
-      }
-      
+        databaseManager.observeData(eventType: .value, dataType: .activity, dataID: id) { (result: Result<Activity, Error>) in
+            switch result {
+            case .success(let fetchedActivity):
+                DispatchQueue.main.async {
+                    self.activity = fetchedActivity
+                    self.fetchHostUserData(hostID: fetchedActivity.hostID)
+                }
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    self.errorMessage = error.localizedDescription
+                }
+            }
+        }
+    }
+    
+    private func fetchHostUserData(hostID: String) {
+        databaseManager.fetchData(type: .user, dataID: hostID) { (result: Result<UserProfile, Error>) in
+            switch result {
+            case .success(let fetchedUser):
+                DispatchQueue.main.async {
+                    self.hostUser = fetchedUser
+                }
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    self.errorMessage = error.localizedDescription
+                }
+            }
+        }
+    }
+    
     
     private func addParticipant() {
         guard let userID = userID else {
@@ -206,7 +222,7 @@ struct ActivityDetailView: View {
             self.activity = activity
             
             do {
-                try databaseManager.updateData(activity, type: .activity, id: activity.id) // 데이터 업데이트
+                try databaseManager.updateData(activity, type: .activity, id: activity.id)
                 print("Participant ID updated successfully")
             } catch {
                 print("Error updating participant ID: \(error.localizedDescription)")
@@ -231,5 +247,5 @@ struct ActivityDetail : View {
 }
 
 #Preview {
-    ActivityDetailView(id: .constant("10790E3E-B2AA-4AAF-9C17-43F30BF54B4A"), nickname: .constant("d"))
+    ActivityDetailView(id: .constant("10790E3E-B2AA-4AAF-9C17-43F30BF54B4A"), nickname: .constant(""))
 }
