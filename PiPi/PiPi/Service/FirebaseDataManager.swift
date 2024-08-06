@@ -36,31 +36,18 @@ final class FirebaseDataManager {
     
     func fetchData<T: Decodable>(
         type: DataType,
-        id: String? = nil,
+        dataID: String? = nil,
         completion: @escaping (Result<T, Error>) -> Void
     ) {
         var databaseRef = ref.child(type.key)
-        if let id {
-            databaseRef = databaseRef.child(id)
+        if let dataID {
+            databaseRef = databaseRef.child(dataID)
         }
         
-        databaseRef.observeSingleEvent(of: .value) { snapshot in
-            if snapshot.exists() {
-                guard let value = snapshot.value as? [String: Any] else {
-                    completion(.failure(FirebaseError.dataNotFound))
-                    return
-                }
-                
-                do {
-                    let data = try JSONSerialization.data(withJSONObject: value)
-                    let decodedData = try JSONDecoder().decode(T.self, from: data)
-                    completion(.success(decodedData))
-                } catch {
-                    completion(.failure(error))
-                }
-            } else {
-                completion(.failure(FirebaseError.dataNotFound))
-            }
+        databaseRef.observeSingleEvent(of: .value) { [weak self] snapshot in
+            self?.handleSnapshot(snapshot: snapshot, dataID: dataID, completion: completion)
+        }
+    }
         }
     }
     
