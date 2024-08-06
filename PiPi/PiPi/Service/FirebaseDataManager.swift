@@ -21,7 +21,11 @@ final class FirebaseDataManager {
     
     private init() {}
     
-    func addData<T: Encodable>(_ data: T, type: DataType, id: String) throws {
+    func addData<T: Encodable>(
+        _ data: T,
+        type: DataType,
+        id: String
+    ) throws {
         let data = try JSONEncoder().encode(data)
         let jsonString = try JSONSerialization.jsonObject(with: data)
         
@@ -30,44 +34,81 @@ final class FirebaseDataManager {
             .setValue(jsonString)
     }
     
-    func fetchData<T: Decodable>(type: DataType, id: String, completion: @escaping (Result<T, Error>) -> Void) {
-        ref.child(type.key)
-            .child(id)
-            .observeSingleEvent(of: .value) { snapshot in
-                if snapshot.exists() {
-                    guard let value = snapshot.value as? [String: Any] else {
-                        completion(.failure(FirebaseError.dataNotFound))
-                        return
-                    }
-                    
-                    do {
-                        let data = try JSONSerialization.data(withJSONObject: value, options: [])
-                        let decodedData = try JSONDecoder().decode(T.self, from: data)
-                        completion(.success(decodedData))
-                    } catch {
-                        print("Decoding error: \(error)")
-                        completion(.failure(error))
-                    }
-                } else {
-                    completion(.failure(FirebaseError.dataNotFound))
-                    print("No data available for the provided ID.")
-                }
+    func fetchData<T: Decodable>(
+        type: DataType,
+        dataID: String? = nil,
+        completion: @escaping (Result<T, Error>) -> Void
+    ) {
+        var databaseRef = ref.child(type.key)
+        if let dataID {
+            databaseRef = databaseRef.child(dataID)
+        }
+        
+        databaseRef.observeSingleEvent(of: .value) { [weak self] snapshot in
+            self?.handleSnapshot(snapshot: snapshot, dataID: dataID, completion: completion)
+        }
+    }
+    
+    func observeData<T: Decodable>(
+        eventType: DataEventType,
+        dataType: DataType,
+        dataID: String? = nil,
+        completion: @escaping (Result<T, Error>) -> Void
+    ) {
+        var databaseRef = ref.child(dataType.key)
+        if let dataID {
+            databaseRef = databaseRef.child(dataID)
+        }
+        
+        databaseRef.observe(eventType) { [weak self] snapshot in
+            self?.handleSnapshot(snapshot: snapshot, dataID: dataID, completion: completion)
+        }
+    }
+    
+    func updateData<T: Encodable>(
+        _ data: T,
+        type: DataType,
+        id: String
+    ) throws {
+        let data = try JSONEncoder().encode(data)
+        let jsonObject = try JSONSerialization.jsonObject(with: data)
+        
+        if let json = jsonObject as? [String: Any] {
+            ref.child(type.key)
+                .child(id)
+                .updateChildValues(json)
+        } else {
+            throw FirebaseError.jsonObjectConvertFailed
+        }
+    }
+    
+    private func handleSnapshot<T: Decodable>(
+        snapshot: DataSnapshot,
+        dataID: String?,
+        completion: (Result<T, Error>) -> Void
+    ) {
+        if snapshot.exists() {
+            do {
+                let decodedData: T = try self.decode(id: dataID, value: snapshot.value)
+                completion(.success(decodedData))
+            } catch {
+                completion(.failure(error))
             }
+        } else {
+            completion(.failure(FirebaseError.dataNotFound))
+        }
     }
     
-    func updateData<T: Encodable>(_ data: T, type: DataType, id: String) throws {
-        let data = try JSONEncoder().encode(data)
-        let jsonString = try JSONSerialization.jsonObject(with: data)
+    private func decode<T: Decodable>(id: String?, value: Any?) throws -> T {
+        guard let object = value as? [String: Any] else {
+            throw FirebaseError.dataNotFound
+        }
         
-        ref.child(type.key)
-            .child(id)
-            .setValue(jsonString)
+        let data = try JSONSerialization.data(withJSONObject: object)
+        
+        return try JSONDecoder().decode(T.self, from: data)
     }
     
-    enum FirebaseError: Error {
-        case dataNotFound
-        case invalidData
-    }
 }
 
 extension FirebaseDataManager {
@@ -75,7 +116,6 @@ extension FirebaseDataManager {
     enum DataType {
         case activity
         case user
-        case ticket
         
         var key: String {
             switch self {
@@ -83,10 +123,13 @@ extension FirebaseDataManager {
                 "activities"
             case .user:
                 "users"
-            case .ticket:
-                "tickets"
             }
         }
+    }
+    
+    enum FirebaseError: Error {
+        case dataNotFound
+        case jsonObjectConvertFailed
     }
     
 }

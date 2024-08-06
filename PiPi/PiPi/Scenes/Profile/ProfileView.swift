@@ -116,7 +116,7 @@ struct ProfileView: View {
         }
     }
     private func loadProfile(userID: String) {
-        databaseManager.fetchData(type: .user, id: userID) { (result: Result<UserProfile, Error>) in
+        databaseManager.fetchData(type: .user, dataID: userID) { (result: Result<UserProfile, Error>) in
             switch result {
             case .success(let profile):
                 DispatchQueue.main.async {
