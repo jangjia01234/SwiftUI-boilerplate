@@ -81,16 +81,10 @@ struct ActivityDetailView: View {
                         
                         Section(header: Text("주최자 정보")) {
                             VStack(alignment: .leading, spacing: 8) {
-                                HStack {
-                                    Text("주최자")
-                                        .frame(width: 120, alignment: .leading)
-                                    Text(hostUser?.nickname ?? "Loading...")
-                                }
-                                HStack {
-                                    Text("참여도")
-                                        .frame(width: 120, alignment: .leading)
-                                    Text("Lv.\(hostUser?.level ?? 0)")
-                                }
+                                
+                                ActivityDetail(label: "주최자", activityData: hostUser?.nickname ?? "Loading...")
+                                ActivityDetail(label: "참여도", activityData: "Lv.\(hostUser?.level ?? 0)")
+                                
                             }
                         }
                         .listRowBackground(Color(.secondarySystemBackground))
