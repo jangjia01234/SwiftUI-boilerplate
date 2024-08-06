@@ -66,6 +66,7 @@ struct ActivityCreateView: View {
                 Button("취소") {}
                 Button(action: {
                     registerActivity()
+                    dismiss()
                 }) {
                     Text("확인")
                 }
