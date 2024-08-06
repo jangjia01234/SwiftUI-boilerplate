@@ -64,19 +64,23 @@ final class FirebaseDataManager {
         }
     }
     
-    func updateData<T: Encodable>(_ data: T, type: DataType, id: String) throws {
+    func updateData<T: Encodable>(
+        _ data: T,
+        type: DataType,
+        id: String
+    ) throws {
         let data = try JSONEncoder().encode(data)
-        let jsonString = try JSONSerialization.jsonObject(with: data)
+        let jsonObject = try JSONSerialization.jsonObject(with: data)
         
-        ref.child(type.key)
-            .child(id)
-            .setValue(jsonString)
+        if let json = jsonObject as? [String: Any] {
+            ref.child(type.key)
+                .child(id)
+                .updateChildValues(json)
+        } else {
+            throw FirebaseError.jsonObjectConvertFailed
+        }
     }
     
-    enum FirebaseError: Error {
-        case dataNotFound
-        case invalidData
-    }
 }
 
 extension FirebaseDataManager {
@@ -96,6 +100,12 @@ extension FirebaseDataManager {
                 "tickets"
             }
         }
+    }
+    
+    enum FirebaseError: Error {
+        case dataNotFound
+        case invalidData
+        case jsonObjectConvertFailed
     }
     
 }
