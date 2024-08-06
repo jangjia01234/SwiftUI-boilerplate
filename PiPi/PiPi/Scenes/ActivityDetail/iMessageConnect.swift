@@ -10,10 +10,12 @@ import MessageUI
 
 
 struct iMessageConnect: UIViewControllerRepresentable {
+   @Binding var email: String
+
     func makeUIViewController(context: Context) -> MFMessageComposeViewController {
         let vc = MFMessageComposeViewController()
         //TODO: 서버에 등록된 사용자의 이메일로 설정
-        vc.recipients = ["user@example.com"]
+        vc.recipients = [email]
         vc.body = "안녕하세요. PiPi에서 보고 연락드립니다 :) 문의사항이 있어요."
         vc.messageComposeDelegate = context.coordinator
         return vc
@@ -39,5 +41,5 @@ struct iMessageConnect: UIViewControllerRepresentable {
 }
 
 #Preview {
-    iMessageConnect()
+    iMessageConnect(email: .constant("user@example.com"))
 }
