@@ -28,7 +28,7 @@ struct Activity: Identifiable {
         maxPeopleNumber: Int,
         participantID: [String] = [],
         category: Category,
-        startDateTime: Date, 
+        startDateTime: Date,
         estimatedTime: Int?,
         coordinates: Coordinates
     ) {
@@ -42,6 +42,21 @@ struct Activity: Identifiable {
         self.startDateTime = startDateTime
         self.estimatedTime = estimatedTime
         self.coordinates = coordinates
+    }
+    
+    init(from decoder: any Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        self.id = try container.decode(String.self, forKey: .id)
+        self.hostID = try container.decode(String.self, forKey: .hostID)
+        self.title = try container.decode(String.self, forKey: .title)
+        self.description = try container.decode(String.self, forKey: .description)
+        self.maxPeopleNumber = try container.decode(Int.self, forKey: .maxPeopleNumber)
+        self.participantID = try container.decodeIfPresent([String].self, forKey: .participantID) ?? []
+        self.category = try container.decode(Category.self, forKey: .category)
+        self.startDateTime = try container.decode(Date.self, forKey: .startDateTime)
+        self.estimatedTime = try container.decode(Int.self, forKey: .estimatedTime)
+        self.coordinates = try container.decode(Coordinates.self, forKey: .coordinates)
     }
     
     func addingParticipant(_ participant: String) -> Activity {
