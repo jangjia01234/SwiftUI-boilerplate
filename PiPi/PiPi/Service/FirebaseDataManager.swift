@@ -88,7 +88,6 @@ extension FirebaseDataManager {
     enum DataType {
         case activity
         case user
-        case ticket
         
         var key: String {
             switch self {
@@ -96,15 +95,12 @@ extension FirebaseDataManager {
                 "activities"
             case .user:
                 "users"
-            case .ticket:
-                "tickets"
             }
         }
     }
     
     enum FirebaseError: Error {
         case dataNotFound
-        case invalidData
         case jsonObjectConvertFailed
     }
     
