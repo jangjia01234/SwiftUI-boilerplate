@@ -43,7 +43,7 @@ struct OnboardingProfileView: View {
                                 .cornerRadius(8)
                                 .font(.system(size: 16))
                                 .padding(.horizontal, 10)
-                                .onChange(of: nickname) { _ in
+                                .onChange(of: nickname) {
                                     validateForm()
                                 }
                         }
@@ -64,8 +64,7 @@ struct OnboardingProfileView: View {
                         }
                         .pickerStyle(SegmentedPickerStyle())
                         .padding(.horizontal, 10)
-                        .onChange(of: affiliation) { _ in
-                            validateForm()
+                        .onChange(of: affiliation) {                            validateForm()
                         }
                         
                         HStack(spacing:0) {
@@ -86,7 +85,7 @@ struct OnboardingProfileView: View {
                                 .font(.system(size: 16))
                                 .padding(.leading, 10)
                                 .padding(.trailing, 4)
-                                .onChange(of: email) { _ in
+                                .onChange(of: email) {
                                     validateForm()
                                 }
                             
