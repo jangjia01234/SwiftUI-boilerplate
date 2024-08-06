@@ -55,7 +55,7 @@ struct Activity: Identifiable {
         self.participantID = try container.decodeIfPresent([String].self, forKey: .participantID) ?? []
         self.category = try container.decode(Category.self, forKey: .category)
         self.startDateTime = try container.decode(Date.self, forKey: .startDateTime)
-        self.estimatedTime = try container.decode(Int.self, forKey: .estimatedTime)
+        self.estimatedTime = try container.decodeIfPresent(Int.self, forKey: .estimatedTime) ?? nil
         self.coordinates = try container.decode(Coordinates.self, forKey: .coordinates)
     }
     
