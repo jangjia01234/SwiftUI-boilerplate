@@ -13,6 +13,12 @@ struct CategoryFilterView: View {
         HStack(spacing: 5) {
             ForEach(Activity.Category.allCases, id: \.rawValue) { category in
                 categoryButton(category)
+                    .frame(maxWidth: .infinity)
+                    .background(.white)
+                    .clipShape(
+                        RoundedRectangle(cornerRadius: 100)
+                    )
+                    .setShadow()
             }
         }
         .padding(.vertical)
@@ -20,13 +26,15 @@ struct CategoryFilterView: View {
     
     private func categoryButton(_ category: Activity.Category) -> some View {
         HStack {
-            Image(systemName: category.imageName)
+            Image("\(category.self).accent")
                 .resizable()
-                .frame(width: 11, height: 11)
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 16, height: 16)
                 .foregroundStyle(.accent)
                 .bold()
             
             Text(category.rawValue)
+                .fontWeight(.semibold)
                 .foregroundStyle(.black)
         }
         .frame(height: 30)
