@@ -14,6 +14,7 @@ struct HomeView: View {
     @State private var activities: [Activity] = []
     @State private var activityCreateViewIsPresented = false
     @State private var selectedMarkerID: String?
+    @State private var showActivityDetail = false
     
     private typealias DatabaseResult = Result<[String: Activity], Error>
     
@@ -69,11 +70,19 @@ struct HomeView: View {
                 }
             }
         }
-        .onChange(of: selectedMarkerID) {
-            //TODO: 활동 디테일 모달 표시
+        .onChange(of: selectedMarkerID) { newValue in
+            showActivityDetail = newValue != nil
+        }
+        .sheet(isPresented: $showActivityDetail) {
+            if let selectedID = selectedMarkerID {
+                ActivityDetailView(id: .constant(selectedID), nickname: .constant("d"))
+                    .background(Color(.white))
+                    .presentationDetents([.height(150), .height(650)])
+                    .presentationCornerRadius(21)
+                    .presentationDragIndicator(.visible)
+            }
         }
     }
-    
 }
 
 fileprivate extension View {
