@@ -76,6 +76,14 @@ struct Activity: Identifiable {
     
 }
 
+extension Activity: Equatable {
+    
+    static func == (lhs: Self, rhs: Self) -> Bool {
+        lhs.id == rhs.id
+    }
+    
+}
+
 extension Activity: Codable {
     
     enum CodingKeys: String, CodingKey {

@@ -11,9 +11,11 @@ import MapKit
 struct HomeView: View {
     
     @Namespace private var mapScope
-    @State private var activities: [Activity] = []
     @State private var activityCreateViewIsPresented = false
     @State private var selectedMarkerID: String?
+    @State private var selectedCategory: Activity.Category? = nil
+    @State private var activities: [Activity] = []
+    @State private var activitiesToShow: [Activity] = []
     
     private typealias DatabaseResult = Result<[String: Activity], Error>
     
@@ -21,7 +23,7 @@ struct HomeView: View {
         NavigationStack {
             ZStack {
                 Map(selection: $selectedMarkerID, scope: mapScope) {
-                    ForEach(activities, id: \.id) { activity in
+                    ForEach(activitiesToShow, id: \.id) { activity in
                         Marker(coordinate: activity.coordinates.toCLLocationCoordinate2D) {
                             Image("\(activity.category.self).white")
                             Text(activity.title)
@@ -34,7 +36,7 @@ struct HomeView: View {
                 
                 ZStack {
                     VStack {
-                        CategoryFilterView()
+                        CategoryFilterView(selectedCategory: $selectedCategory)
                         TicketProfileButtonView()
                         Spacer()
                     }
@@ -69,8 +71,18 @@ struct HomeView: View {
                 }
             }
         }
+        .onChange(of: activities) {
+            activitiesToShow = activities
+        }
         .onChange(of: selectedMarkerID) {
             //TODO: 활동 디테일 모달 표시
+        }
+        .onChange(of: selectedCategory) {
+            guard let selectedCategory else {
+                activitiesToShow = activities
+                return
+            }
+            activitiesToShow = activities.filter { $0.category == selectedCategory }
         }
     }
     
