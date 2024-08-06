@@ -81,6 +81,33 @@ final class FirebaseDataManager {
         }
     }
     
+    private func handleSnapshot<T: Decodable>(
+        snapshot: DataSnapshot,
+        dataID: String?,
+        completion: (Result<T, Error>) -> Void
+    ) {
+        if snapshot.exists() {
+            do {
+                let decodedData: T = try self.decode(id: dataID, value: snapshot.value)
+                completion(.success(decodedData))
+            } catch {
+                completion(.failure(error))
+            }
+        } else {
+            completion(.failure(FirebaseError.dataNotFound))
+        }
+    }
+    
+    private func decode<T: Decodable>(id: String?, value: Any?) throws -> T {
+        guard let object = value as? [String: Any] else {
+            throw FirebaseError.dataNotFound
+        }
+        
+        let data = try JSONSerialization.data(withJSONObject: object)
+        
+        return try JSONDecoder().decode(T.self, from: data)
+    }
+    
 }
 
 extension FirebaseDataManager {
