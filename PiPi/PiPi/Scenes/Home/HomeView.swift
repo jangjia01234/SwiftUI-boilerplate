@@ -11,7 +11,7 @@ import MapKit
 struct HomeView: View {
     
     @Namespace private var mapScope
-    @State private var cameraPosition: MapCameraPosition = .camera(.init(centerCoordinate: .postech, distance: 1500))
+    @State private var cameraPosition: MapCameraPosition = .defaultPosition
     @State private var activityCreateViewIsPresented = false
     @State private var selectedMarkerID: String?
     @State private var showActivityDetail = false
@@ -38,6 +38,8 @@ struct HomeView: View {
                         Marker(coordinate: activity.coordinates.toCLLocationCoordinate2D) {
                             Image("\(activity.category.self).white")
                             Text(activity.title)
+                                .font(.callout)
+                                .fontWeight(.regular)
                         }
                         .tint(.accent)
                     }
@@ -55,10 +57,6 @@ struct HomeView: View {
                         Spacer()
                         VStack(spacing: 10) {
                             Spacer()
-                            VStack(spacing: 5) {
-                                MapUserLocationButton(scope: mapScope)
-                                    .setSmallButtonAppearance()
-                            }
                             ActivityCreateButton(isPresented: $activityCreateViewIsPresented)
                         }
                     }
