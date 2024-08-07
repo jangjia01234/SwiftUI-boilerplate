@@ -19,7 +19,6 @@
 		444D2ED82C576CE60019A966 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D2ED72C576CE60019A966 /* Activity.swift */; };
 		444D2EDF2C58B5A20019A966 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D2EDE2C58B5A20019A966 /* HomeView.swift */; };
 		444D2EE22C58BF790019A966 /* CategoryFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D2EE12C58BF790019A966 /* CategoryFilterView.swift */; };
-		444D2EE42C58C1320019A966 /* CategoryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D2EE32C58C1320019A966 /* CategoryButton.swift */; };
 		444D2EE62C58C9080019A966 /* TicketProfileButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D2EE52C58C9080019A966 /* TicketProfileButtonView.swift */; };
 		444D2EE82C59B04A0019A966 /* ActivityCreateButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D2EE72C59B04A0019A966 /* ActivityCreateButton.swift */; };
 		444D2EEB2C59BC2B0019A966 /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D2EEA2C59BC2B0019A966 /* View+.swift */; };
@@ -44,7 +43,7 @@
 		D32FE2602C5E57960048FDBD /* SelectedMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32FE25F2C5E57960048FDBD /* SelectedMapView.swift */; };
 		D3AE25262C5A5C28009BC64C /* iMessageConnect.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AE25252C5A5C28009BC64C /* iMessageConnect.swift */; };
 		D3D0CB1F2C5E75A100075BF5 /* RegistrationStatusViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D0CB1E2C5E75A100075BF5 /* RegistrationStatusViewModel.swift */; };
-		D3FFBBED2C58BA330042EAAD /* ActivityPinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFBBEC2C58BA330042EAAD /* ActivityPinView.swift */; };
+		D3D2A8312C625C0C00DC291B /* ActivitySmallModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D2A8302C625C0C00DC291B /* ActivitySmallModalView.swift */; };
 		D3FFBBEF2C58BB6A0042EAAD /* ActivityDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFBBEE2C58BB6A0042EAAD /* ActivityDetailView.swift */; };
 /* End PBXBuildFile section */
 
@@ -63,7 +62,6 @@
 		444D2ED72C576CE60019A966 /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 		444D2EDE2C58B5A20019A966 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		444D2EE12C58BF790019A966 /* CategoryFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryFilterView.swift; sourceTree = "<group>"; };
-		444D2EE32C58C1320019A966 /* CategoryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryButton.swift; sourceTree = "<group>"; };
 		444D2EE52C58C9080019A966 /* TicketProfileButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketProfileButtonView.swift; sourceTree = "<group>"; };
 		444D2EE72C59B04A0019A966 /* ActivityCreateButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityCreateButton.swift; sourceTree = "<group>"; };
 		444D2EEA2C59BC2B0019A966 /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
@@ -85,7 +83,7 @@
 		D32FE25F2C5E57960048FDBD /* SelectedMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedMapView.swift; sourceTree = "<group>"; };
 		D3AE25252C5A5C28009BC64C /* iMessageConnect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iMessageConnect.swift; sourceTree = "<group>"; };
 		D3D0CB1E2C5E75A100075BF5 /* RegistrationStatusViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationStatusViewModel.swift; sourceTree = "<group>"; };
-		D3FFBBEC2C58BA330042EAAD /* ActivityPinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityPinView.swift; sourceTree = "<group>"; };
+		D3D2A8302C625C0C00DC291B /* ActivitySmallModalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivitySmallModalView.swift; sourceTree = "<group>"; };
 		D3FFBBEE2C58BB6A0042EAAD /* ActivityDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -199,7 +197,6 @@
 			children = (
 				444D2EDE2C58B5A20019A966 /* HomeView.swift */,
 				444D2EE12C58BF790019A966 /* CategoryFilterView.swift */,
-				444D2EE32C58C1320019A966 /* CategoryButton.swift */,
 				444D2EE52C58C9080019A966 /* TicketProfileButtonView.swift */,
 				444D2EE72C59B04A0019A966 /* ActivityCreateButton.swift */,
 			);
@@ -263,14 +260,22 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		D3D2A8322C625CFD00DC291B /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				D3D2A8302C625C0C00DC291B /* ActivitySmallModalView.swift */,
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
 		D3FFBBE42C58B95C0042EAAD /* ActivityDetail */ = {
 			isa = PBXGroup;
 			children = (
-				D3FFBBEC2C58BA330042EAAD /* ActivityPinView.swift */,
+				D3D2A8322C625CFD00DC291B /* Component */,
 				D3FFBBEE2C58BB6A0042EAAD /* ActivityDetailView.swift */,
-				D3D0CB1E2C5E75A100075BF5 /* RegistrationStatusViewModel.swift */,
 				D3AE25252C5A5C28009BC64C /* iMessageConnect.swift */,
 				D32FE25F2C5E57960048FDBD /* SelectedMapView.swift */,
+				D3D0CB1E2C5E75A100075BF5 /* RegistrationStatusViewModel.swift */,
 			);
 			path = ActivityDetail;
 			sourceTree = "<group>";
@@ -372,17 +377,16 @@
 				444D2EF42C5B2CD80019A966 /* LocationSelectView.swift in Sources */,
 				D32FE2602C5E57960048FDBD /* SelectedMapView.swift in Sources */,
 				444D2ED82C576CE60019A966 /* Activity.swift in Sources */,
+				D3D2A8312C625C0C00DC291B /* ActivitySmallModalView.swift in Sources */,
 				444D2EDF2C58B5A20019A966 /* HomeView.swift in Sources */,
 				444D2EE82C59B04A0019A966 /* ActivityCreateButton.swift in Sources */,
 				444D2EE22C58BF790019A966 /* CategoryFilterView.swift in Sources */,
 				8D451A132C5AADE6005EA90A /* QRAuthView.swift in Sources */,
 				444D2EEB2C59BC2B0019A966 /* View+.swift in Sources */,
 				444D2EE62C58C9080019A966 /* TicketProfileButtonView.swift in Sources */,
-				444D2EE42C58C1320019A966 /* CategoryButton.swift in Sources */,
 				444D2ECB2C5767970019A966 /* ContentView.swift in Sources */,
 				8D5B59DA2C6095330096B5AF /* Date+.swift in Sources */,
 				444D2EEE2C59DB510019A966 /* ActivityCreateView.swift in Sources */,
-				D3FFBBED2C58BA330042EAAD /* ActivityPinView.swift in Sources */,
 				D3FFBBEF2C58BB6A0042EAAD /* ActivityDetailView.swift in Sources */,
 				8D8321592C5937CB00C9ABA1 /* TicketsView.swift in Sources */,
 				8D83215D2C59655800C9ABA1 /* TicketDetailView.swift in Sources */,
@@ -521,7 +525,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"PiPi/Preview Content\"";
-				DEVELOPMENT_TEAM = K3CQFPAA9A;
+				DEVELOPMENT_TEAM = VV2G7CU8KX;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PiPi/Info.plist;
@@ -556,7 +560,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"PiPi/Preview Content\"";
-				DEVELOPMENT_TEAM = K3CQFPAA9A;
+				DEVELOPMENT_TEAM = VV2G7CU8KX;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PiPi/Info.plist;
