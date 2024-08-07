@@ -9,7 +9,6 @@ import SwiftUI
 
 struct OnboardingProfileView: View {
     
-    @State private var isNavigationActive: Bool = false
     @State private var nickname: String = ""
     @State private var affiliation: String = ""
     @State private var email: String = ""
@@ -64,7 +63,8 @@ struct OnboardingProfileView: View {
                         }
                         .pickerStyle(SegmentedPickerStyle())
                         .padding(.horizontal, 10)
-                        .onChange(of: affiliation) {                            validateForm()
+                        .onChange(of: affiliation) {                            
+                            validateForm()
                         }
                         
                         HStack(spacing:0) {
@@ -99,7 +99,6 @@ struct OnboardingProfileView: View {
                     
                     Button {
                         saveProfile()
-                        isNavigationActive = true
                     } label: {
                         Text("완료")
                             .fontWeight(.bold)
@@ -110,13 +109,6 @@ struct OnboardingProfileView: View {
                     }
                     .disabled(!isButtonEnabled)
                     .padding(.bottom, 186)
-                    
-                    NavigationLink(
-                        destination: HomeView(),
-                        isActive: $isNavigationActive
-                    ) {
-                        EmptyView()
-                    }
                 }
                 .toolbar {
                     ToolbarItemGroup(placement: .keyboard) {

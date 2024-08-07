@@ -50,18 +50,17 @@ struct HomeView: View {
                 ZStack {
                     VStack {
                         CategoryFilterView(selectedCategory: $selectedCategory)
-                        TicketProfileButtonView()
                         Spacer()
                     }
                     HStack {
                         Spacer()
-                        VStack(spacing: 10) {
+                        VStack {
                             Spacer()
                             ActivityCreateButton(isPresented: $activityCreateViewIsPresented)
                         }
                     }
                 }
-                .padding(.horizontal)
+                .padding([.horizontal, .bottom], 10)
                 .zIndex(2)
             }
             .mapScope(mapScope)
