@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct ContentView: View {
-
+    
     @State private var showHomeView = false
     
     var body: some View {
-    VStack {
+        VStack {
             if !showHomeView {
                 SplashView()
                     .transition(.opacity)
@@ -25,10 +25,10 @@ struct ContentView: View {
                     }
             } else {
                 OnboardingTabView()
-
             }
         }
     }
+    
 }
 
 struct SplashView: View {
@@ -41,7 +41,8 @@ struct SplashView: View {
                 .resizable()
                 .ignoresSafeArea()
                 .opacity(opacity)
-        }       .onAppear {
+        }
+        .onAppear {
             // ContentView가 나타난 후 3초 후에 opacity를 0으로 변경하여 투명해지도록 함
             DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
                 withAnimation {
@@ -50,6 +51,7 @@ struct SplashView: View {
             }
         }
     }
+    
 }
 
 #Preview {
