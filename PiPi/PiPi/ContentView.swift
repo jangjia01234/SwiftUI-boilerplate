@@ -9,24 +9,23 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State private var showHomeView = false
-    
     var body: some View {
-        VStack {
-            if !showHomeView {
-                SplashView()
-                    .transition(.opacity)
-                    .onAppear {
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
-                            withAnimation {
-                                showHomeView = true
-                            }
-                        }
-                    }
-            } else {
-                OnboardingTabView()
-            }
+        TabView {
+            HomeView()
+                .tabItem {
+                    Image(systemName: "map")
+                    Text("홈")
+                }
+            
+            // TODO: TicketsView 추가
+            
+            ProfileView()
+                .tabItem {
+                    Image(systemName: "person")
+                    Text("프로필")
+                }
         }
+        .tint(.accent)
     }
     
 }
