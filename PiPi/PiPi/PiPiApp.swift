@@ -24,10 +24,15 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 struct PiPiApp: App {
     
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+    @AppStorage("userID") var userID: String = ""
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            if userID.isEmpty {
+                OnboardingTabView()
+            } else {
+                ContentView()
+            }
         }
     }
     
