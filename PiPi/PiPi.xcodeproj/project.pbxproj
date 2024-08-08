@@ -17,8 +17,8 @@
 		4411F9A82C634FDB00FF4845 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4411F9A72C634FDB00FF4845 /* LaunchScreen.storyboard */; };
 		4411F9AA2C63605A00FF4845 /* ActivityDetailFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4411F9A92C63605A00FF4845 /* ActivityDetailFooterView.swift */; };
 		4411F9AD2C64728F00FF4845 /* ActivityDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4411F9AC2C64728F00FF4845 /* ActivityDetailHeaderView.swift */; };
-		4411F9AF2C64787200FF4845 /* ActivityInformationSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4411F9AE2C64787200FF4845 /* ActivityInformationSectionView.swift */; };
-		4411F9B12C647A5000FF4845 /* HostInformationSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4411F9B02C647A5000FF4845 /* HostInformationSectionView.swift */; };
+		4411F9B52C64A60900FF4845 /* ActivityInformationSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4411F9B42C64A60900FF4845 /* ActivityInformationSectionView.swift */; };
+		4411F9B72C64A69D00FF4845 /* HostInformationSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4411F9B62C64A69D00FF4845 /* HostInformationSectionView.swift */; };
 		444D2ECB2C5767970019A966 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D2ECA2C5767970019A966 /* ContentView.swift */; };
 		444D2ECD2C5767980019A966 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 444D2ECC2C5767980019A966 /* Assets.xcassets */; };
 		444D2ED02C5767980019A966 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 444D2ECF2C5767980019A966 /* Preview Assets.xcassets */; };
@@ -61,8 +61,8 @@
 		4411F9A72C634FDB00FF4845 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4411F9A92C63605A00FF4845 /* ActivityDetailFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDetailFooterView.swift; sourceTree = "<group>"; };
 		4411F9AC2C64728F00FF4845 /* ActivityDetailHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDetailHeaderView.swift; sourceTree = "<group>"; };
-		4411F9AE2C64787200FF4845 /* ActivityInformationSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityInformationSectionView.swift; sourceTree = "<group>"; };
-		4411F9B02C647A5000FF4845 /* HostInformationSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostInformationSectionView.swift; sourceTree = "<group>"; };
+		4411F9B42C64A60900FF4845 /* ActivityInformationSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityInformationSectionView.swift; sourceTree = "<group>"; };
+		4411F9B62C64A69D00FF4845 /* HostInformationSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostInformationSectionView.swift; sourceTree = "<group>"; };
 		444D2EC52C5767970019A966 /* PiPi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PiPi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		444D2EC82C5767970019A966 /* PiPiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiPiApp.swift; sourceTree = "<group>"; };
 		444D2ECA2C5767970019A966 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -272,8 +272,8 @@
 			children = (
 				4411F9A92C63605A00FF4845 /* ActivityDetailFooterView.swift */,
 				4411F9AC2C64728F00FF4845 /* ActivityDetailHeaderView.swift */,
-				4411F9AE2C64787200FF4845 /* ActivityInformationSectionView.swift */,
-				4411F9B02C647A5000FF4845 /* HostInformationSectionView.swift */,
+				4411F9B42C64A60900FF4845 /* ActivityInformationSectionView.swift */,
+				4411F9B62C64A69D00FF4845 /* HostInformationSectionView.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -376,8 +376,8 @@
 				444D2EF72C5B5AA20019A966 /* PiPiApp.swift in Sources */,
 				444D2EF62C5B2D5A0019A966 /* CLLocationCoordinate2D+.swift in Sources */,
 				D3AE25262C5A5C28009BC64C /* iMessageConnect.swift in Sources */,
-				4411F9B12C647A5000FF4845 /* HostInformationSectionView.swift in Sources */,
 				8D83215F2C5967B900C9ABA1 /* TicketView.swift in Sources */,
+				4411F9B52C64A60900FF4845 /* ActivityInformationSectionView.swift in Sources */,
 				242DF4572C5902F2006D8627 /* OnboardingProfileView.swift in Sources */,
 				242DF4552C58C6C3006D8627 /* OnboardingTabView.swift in Sources */,
 				444D2EF22C5B2BC60019A966 /* Coordinates.swift in Sources */,
@@ -388,13 +388,13 @@
 				D32FE2602C5E57960048FDBD /* SelectedMapView.swift in Sources */,
 				444D2ED82C576CE60019A966 /* Activity.swift in Sources */,
 				444D2EDF2C58B5A20019A966 /* HomeView.swift in Sources */,
+				4411F9B72C64A69D00FF4845 /* HostInformationSectionView.swift in Sources */,
 				444D2EE82C59B04A0019A966 /* ActivityCreateButton.swift in Sources */,
 				444D2EE22C58BF790019A966 /* CategoryFilterView.swift in Sources */,
 				8D451A132C5AADE6005EA90A /* QRAuthView.swift in Sources */,
 				444D2EEB2C59BC2B0019A966 /* View+.swift in Sources */,
 				4411F9A62C6291A800FF4845 /* Constants.swift in Sources */,
 				444D2ECB2C5767970019A966 /* ContentView.swift in Sources */,
-				4411F9AF2C64787200FF4845 /* ActivityInformationSectionView.swift in Sources */,
 				4411F9AA2C63605A00FF4845 /* ActivityDetailFooterView.swift in Sources */,
 				8D5B59DA2C6095330096B5AF /* Date+.swift in Sources */,
 				444D2EEE2C59DB510019A966 /* ActivityCreateView.swift in Sources */,

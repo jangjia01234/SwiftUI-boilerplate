@@ -9,36 +9,36 @@ import SwiftUI
 
 struct ActivityDetailHeaderView: View {
     
-    let title: String
-    let description: String
-    let status: Activity.State
+    @Binding var activity: Activity?
     
     var body: some View {
-        VStack {
-            HStack {
-                Text(title)
-                    .font(.title)
-                    .fontWeight(.semibold)
-                Spacer()
-                Text(status.rawValue)
+        if let activity {
+            VStack {
+                HStack {
+                    Text(activity.title)
+                        .font(.title)
+                        .fontWeight(.semibold)
+                    Spacer()
+                    Text(activity.status.rawValue)
+                        .font(.callout)
+                        .fontWeight(.bold)
+                        .foregroundColor(
+                            activity.status == .open ? .accent : .red
+                        )
+                }
+                Text(activity.description)
                     .font(.callout)
-                    .fontWeight(.bold)
-                    .foregroundColor(
-                        status == .open ? .accent : .red
-                    )
+                    .foregroundColor(.gray)
+                    .frame(maxWidth: .infinity, alignment: .leading)
             }
-            Text(description)
-                .font(.callout)
-                .foregroundColor(.gray)
-                .frame(maxWidth: .infinity, alignment: .leading)
         }
     }
 }
 
-#Preview {
-    ActivityDetailHeaderView(
-        title: "제목",
-        description: "설명",
-        status: .open
-    )
-}
+//#Preview {
+//    ActivityDetailHeaderView(
+//        title: .constant("제목"),
+//        description: .constant("설명"),
+//        status: .constant(.open)
+//    )
+//}
