@@ -76,10 +76,10 @@ playground.xcworkspace
 .swiftpm/
 
 # If you do not want to track package resolution, uncomment the line below:
-# Package.resolved
+Package.resolved
 
 # If you want to ignore the `Packages` directory (where SPM stores downloaded dependencies), uncomment the line below:
-# Packages/
+Packages/
 
 # CocoaPods
 # We recommend against adding the Pods directory to your .gitignore. However
