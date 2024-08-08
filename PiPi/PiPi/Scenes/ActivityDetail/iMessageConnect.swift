@@ -8,9 +8,9 @@
 import SwiftUI
 import MessageUI
 
-
 struct iMessageConnect: UIViewControllerRepresentable {
-   @Binding var email: String
+    
+    let email: String
 
     func makeUIViewController(context: Context) -> MFMessageComposeViewController {
         let vc = MFMessageComposeViewController()
@@ -41,5 +41,5 @@ struct iMessageConnect: UIViewControllerRepresentable {
 }
 
 #Preview {
-    iMessageConnect(email: .constant("user@example.com"))
+    iMessageConnect(email: "user@example.com")
 }
