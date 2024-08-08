@@ -13,7 +13,7 @@ struct HomeView: View {
     @Namespace private var mapScope
     @State private var cameraPosition: MapCameraPosition = .defaultPosition
     @State private var activityCreateViewIsPresented = false
-    @State private var selectedMarkerID: String?
+    @State private var selectedMarkerActivity: Activity?
     @State private var showActivityDetail = false
     @State private var selectedCategory: Activity.Category? = nil
     @State private var activities: [Activity] = []
@@ -22,53 +22,64 @@ struct HomeView: View {
     private typealias DatabaseResult = Result<[String: Activity], Error>
     
     var body: some View {
-        NavigationStack {
-            ZStack {
-                Map(
-                    position: $cameraPosition,
-                    bounds: .init(
-                        centerCoordinateBounds: .cameraBoundary,
-                        minimumDistance: 500,
-                        maximumDistance: 3000
-                    ),
-                    selection: $selectedMarkerID,
-                    scope: mapScope
-                ) {
-                    ForEach(activitiesToShow, id: \.id) { activity in
-                        Marker(coordinate: activity.coordinates.toCLLocationCoordinate2D) {
-                            Image("\(activity.category.self).white")
-                            Text(activity.title)
-                                .font(.callout)
-                                .fontWeight(.regular)
-                        }
-                        .tint(.accent)
+        ZStack {
+            Map(
+                position: $cameraPosition,
+                bounds: .init(
+                    centerCoordinateBounds: .cameraBoundary,
+                    minimumDistance: 500,
+                    maximumDistance: 3000
+                ),
+                selection: $selectedMarkerActivity,
+                scope: mapScope
+            ) {
+                ForEach(activitiesToShow, id: \.self) { activity in
+                    Marker(coordinate: activity.coordinates.toCLLocationCoordinate2D) {
+                        Image("\(activity.category.self).white")
+                        Text(activity.title)
+                            .font(.callout)
+                            .fontWeight(.regular)
                     }
+                    .tint(.accent)
                 }
-                .mapControlVisibility(.hidden)
-                .zIndex(1)
-                
-                ZStack {
-                    VStack {
-                        CategoryFilterView(selectedCategory: $selectedCategory)
-                        Spacer()
-                    }
-                    HStack {
-                        Spacer()
-                        VStack {
-                            Spacer()
-                            ActivityCreateButton(isPresented: $activityCreateViewIsPresented)
-                        }
-                    }
-                }
-                .padding([.horizontal, .bottom], 10)
-                .zIndex(2)
             }
-            .mapScope(mapScope)
-            .fullScreenCover(isPresented: $activityCreateViewIsPresented) {
-                ActivityCreateView()
+            .mapControlVisibility(.hidden)
+            .zIndex(1)
+            
+            ZStack {
+                VStack {
+                    CategoryFilterView(selectedCategory: $selectedCategory)
+                    Spacer()
+                }
+                HStack {
+                    Spacer()
+                    VStack {
+                        Spacer()
+                        ActivityCreateButton(isPresented: $activityCreateViewIsPresented)
+                    }
+                }
+            }
+            .padding([.horizontal, .bottom], 10)
+            .zIndex(2)
+        }
+        .mapScope(mapScope)
+        .fullScreenCover(isPresented: $activityCreateViewIsPresented) {
+            ActivityCreateView()
+        }
+        .sheet(isPresented: $showActivityDetail) {
+            if let selectedActivity = selectedMarkerActivity {
+                ActivityDetailView(
+                    activityID: selectedActivity.id,
+                    hostID: selectedActivity.hostID
+                )
+                .background(Color(.white))
+                .presentationDetents([.height(150), .height(650)])
+                .presentationDragIndicator(.visible)
+                .onDisappear {
+                    selectedMarkerActivity = nil
+                }
             }
         }
-        .navigationBarBackButtonHidden(true)
         .onAppear {
             FirebaseDataManager.shared.observeData(eventType: .value, dataType: .activity) { (result: DatabaseResult) in
                 switch result {
@@ -79,17 +90,8 @@ struct HomeView: View {
                 }
             }
         }
-        .onChange(of: selectedMarkerID) {
-            showActivityDetail = (selectedMarkerID != nil)
-        }
-        .sheet(isPresented: $showActivityDetail) {
-            if let selectedID = selectedMarkerID {
-                ActivityDetailView(id: .constant(selectedID), nickname: .constant("d"))
-                    .background(Color(.white))
-                    .presentationDetents([.height(150), .height(650)])
-                    .presentationCornerRadius(21)
-                    .presentationDragIndicator(.visible)
-            }
+        .onChange(of: selectedMarkerActivity) {
+            showActivityDetail = (selectedMarkerActivity != nil)
         }
         .onChange(of: activities) {
             activitiesToShow = activities
